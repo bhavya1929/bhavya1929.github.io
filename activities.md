@@ -5,21 +5,21 @@ title: ""
 
 ## Presentations
 
-- 2026. **Perturb2026 Conference** (Selected Talk)
-- 2025. **EMBL Conference: Cancer Genomics** (Selected Talk)
-- 2024. **EACR Cancer Genomics, Multi-omics and Computational Biology** (Poster)
-- 2024. **Nature Conference: RNA at the Bench and Bedside IV** (Poster)
-- 2023. **FANTOM6 International Conference** (Poster)
-- 2023. **Irish Computational Biology and Genomics (ICBG) Symposium** (Poster)
-- 2021. **EACR Annual Congress** (Poster)
+- 2026. Perturb2026 Conference** (Selected Talk)
+- 2025. EMBL Conference: Cancer Genomics** (Selected Talk)
+- 2024. EACR Cancer Genomics, Multi-omics and Computational Biology** (Poster)
+- 2024. Nature Conference: RNA at the Bench and Bedside IV** (Poster)
+- 2023. FANTOM6 International Conference** (Poster)
+- 2023. Irish Computational Biology and Genomics (ICBG) Symposium** (Poster)
+- 2021. EACR Annual Congress** (Poster)
 
 ---
 
 ## Awards & Fellowships
 
-- 2023. **Marie Skłodowska-Curie Actions (MSCA) PhD Fellowship** — Competitive EU-wide doctoral fellowship awarded to outstanding early-stage researchers.
-- 2022. **Indian Council of Medical Research (ICMR) Senior Research Fellowship**
-- 2019. **Bangalore Life Science Cluster (BLiSC) Fellowship**
+- 2023. Marie Skłodowska-Curie Actions (MSCA) PhD Fellowship** — Competitive EU-wide doctoral fellowship awarded to outstanding early-stage researchers.
+- 2022. Indian Council of Medical Research (ICMR) Senior Research Fellowship**
+- 2019. Bangalore Life Science Cluster (BLiSC) Fellowship**
 
 ---
 
