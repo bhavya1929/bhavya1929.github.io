@@ -39,6 +39,7 @@ social-network-links:
   email: "bhavya.dhaka@ucdconnect.ie"
   github: bhavya1929
   linkedin: bhavyadhaka
+  google-scholar: "3i6VxPEAAAAJ&hl=en"
 
 share-links-active:
   twitter: false
@@ -86,6 +87,8 @@ exclude:
   - LICENSE
   - README.md
   - Vagrantfile
+  - vendor
+
 
 prose:
   rooturl: '_posts'
