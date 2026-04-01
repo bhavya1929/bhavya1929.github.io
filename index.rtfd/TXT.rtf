@@ -1,0 +1,60 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\froman\fcharset0 Times-Bold;\f2\froman\fcharset0 TimesNewRomanPSMT;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue233;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c0\c0\c93333;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww30040\viewh18900\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 --- layout: page title: "Hi, I'm Bhavya.\'94 subtitle: Computational Biologist & ML Scientist | MSCA Fellow use-site-title: true css: "/css/index.css" bigimg: - "/img/msn_1.jpeg" : "Madison, USA (2021)"  ---\
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 I think about\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0\fs24 \cf0 \{% for post in paginator.posts %\}\
+\pard\pardeftab720\sa298\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "file:///Users/bhavyadhaka/Documents/anishacharya.github.io-master/%7B%7B%20post.url%20%7C%20prepend:%20site.baseurl%20%7D%7D"}}{\fldrslt 
+\f1\b\fs36 \cf3 \ul \ulc3 \strokec3 \{\{ post.title \}\}\ulnone \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0\fs24 \cf3 \ul \ulc3 \{% if post.subtitle %\}
+\f1\b\fs28 \ulnone \
+\pard\pardeftab720\sa280\partightenfactor0
+\cf3 \ul \ulc3 \{\{ post.subtitle \}\}\ulnone \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0\fs24 \cf3 \ul \ulc3 \{% endif %\}}}\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 Posted on \{\{ post.date | date: "%B %-d, %Y" \}\}\
+\pard\pardeftab720\partightenfactor0
+\cf0 \{% if post.image %\}\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "file:///Users/bhavyadhaka/Documents/anishacharya.github.io-master/%7B%7B%20post.url%20%7C%20prepend:%20site.baseurl%20%7D%7D"}}{\fldrslt \cf3 \strokec3 {{\NeXTGraphic Attachment.png \width320 \height320 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}}}\pard\pardeftab720\partightenfactor0
+\cf0 \
+\{% endif %\}\
+\{\{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length \}\} \{% assign excerpt_word_count = post.excerpt | number_of_words %\} \{% if post.content != post.excerpt or excerpt_word_count > site.excerpt_length %\} {\field{\*\fldinst{HYPERLINK "file:///Users/bhavyadhaka/Documents/anishacharya.github.io-master/%7B%7B%20post.url%20%7C%20prepend:%20site.baseurl%20%7D%7D"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 [Read\'a0More]}} \{% endif %\}\
+\{% if post.tags.size > 0 %\}\
+Tags: \{% if site.link-tags %\} \{% for tag in post.tags %\} {\field{\*\fldinst{HYPERLINK "file:///Users/bhavyadhaka/Documents/anishacharya.github.io-master/%7B%7B%20site.baseurl%20%7D%7D/tags#%7B%7B-%20tag%20-%7D%7D"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 \{\{- tag -\}\}}} \{% endfor %\} \{% else %\} \{\{ post.tags | join: ", " \}\} \{% endif %\}\
+\{% endif %\}\
+\{% endfor %\}\
+\{% if paginator.total_pages > 1 %\}\
+\{% if paginator.previous_page %\}\
+\pard\pardeftab720\partightenfactor0
+\ls1\ilvl0{\field{\*\fldinst{HYPERLINK "file:///Users/bhavyadhaka/Documents/anishacharya.github.io-master/%7B%7B%20paginator.previous_page_path%20%7C%20prepend:%20site.baseurl%20%7C%20replace:%20'//',%20'/'%20%7D%7D"}}{\fldrslt 
+\f2 \cf3 \ul \ulc3 \strokec3 {\listtext	\'95	}\uc0\u8592 
+\f0  Newer Posts}}\
+\pard\pardeftab720\partightenfactor0
+\cf0 \{% endif %\} \{% if paginator.next_page %\}\
+\pard\pardeftab720\partightenfactor0
+\ls2\ilvl0{\field{\*\fldinst{HYPERLINK "file:///Users/bhavyadhaka/Documents/anishacharya.github.io-master/%7B%7B%20paginator.next_page_path%20%7C%20prepend:%20site.baseurl%20%7C%20replace:%20'//',%20'/'%20%7D%7D"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 {\listtext	\'95	}Older Posts 
+\f2 \uc0\u8594 }}\
+\pard\pardeftab720\partightenfactor0
+\cf0 \{% endif %\}\
+\{% endif %\}}

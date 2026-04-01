@@ -1,0 +1,87 @@
+# --- General options --- #
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+
+url: "https://bhavya1929.github.io"
+baseurl: ""
+
+# --- Site Info --- #
+
+title: Bhavya Dhaka
+description: "Computational Biologist & ML Scientist | Cancer Genomics · Perturbation Biology · Drug Discovery"
+
+# --- Navigation bar --- #
+
+navbar-links:
+  Resume: "https://github.com/bhavya1929/bhavya1929.github.io/blob/master/doc/Bhavya_CV.pdf"
+  Publications: "publications"
+  Activities: "activities"
+
+# Your headshot — upload a file named bhavya.jpg to the img/ folder
+avatar: "/img/bhavya.jpg"
+
+# --- Colours --- #
+
+navbar-col: "#F5F5F5"
+navbar-text-col: "#404040"
+navbar-children-col: "#F5F5F5"
+page-col: "#FFFFFF"
+link-col: "#008AFF"
+hover-col: "#0085A1"
+footer-col: "#F5F5F5"
+footer-text-col: "#777777"
+footer-link-col: "#404040"
+
+# --- Footer --- #
+
+author:
+  name: Bhavya Dhaka
+
+social-network-links:
+  email: "bhavya.dhaka@ucdconnect.ie"
+  github: bhavya1929
+  linkedin: bhavyadhaka
+
+# --- Misc --- #
+
+excerpt_length: 50
+title-separator: "-"
+timezone: "Europe/Dublin"
+markdown: kramdown
+highlighter: rouge
+permalink: /:year-:month-:day-:title/
+paginate: 5
+
+kramdown:
+  input: GFM
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: false
+      social-share: false
+  -
+    scope:
+      path: ""
+    values:
+      layout: "page"
+      show-avatar: true
+
+link-tags: true
+
+exclude:
+  - CHANGELOG.md
+  - CNAME
+  - Dockerfile
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - Vagrantfile

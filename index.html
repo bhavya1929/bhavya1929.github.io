@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">---</p>
+<p class="p1">layout: page</p>
+<p class="p1">title: "Hi, I'm Bhavya."</p>
+<p class="p1">subtitle: "Computational Biologist &amp; ML Scientist | MSCA Fellow</p>
+<p class="p1">use-site-title: true</p>
+<p class="p1">css: "/css/index.css"</p>
+<p class="p1">bigimg:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- "/img/dune.jpg" : "Dunloe Mountains, Ireland"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- "/img/netherlands.jpg" : "Rotterdam, Netherlands"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- "/img/grandmarket.jpg" : "LA Grand Market, USA"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- "/img/sandiego.jpg" : "San Diego, USA"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- "/img/kilarny.jpg" : "Killarney, Ireland"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- "/img/arizona.jpg" : "Tucson, Arizona, USA"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- "/img/townsong.jpg" : "Pub, Ireland"</p>
+<p class="p1">---</p>
+<p class="p1">&lt;!-- Typed.js --&gt;<span class="Apple-converted-space"> </span></p>
+<p class="p1">&lt;script src="/js/jquery-1.11.2.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;script src="/js/typed.js" type="text/javascript"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$(function(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$(".typed").typed({</p>
+<p class="p1"><span class="Apple-converted-space">      </span>strings: [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>"Perturbation Biology",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>"Cancer Genomics",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>"Deep Learning for Genomics",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>"Single-Cell Multi-Omics",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>"Therapeutic Target Discovery",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>typeSpeed: 50,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>loop: true,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>backDelay: 1000</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="typed-js-hide"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="col-sm-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h1&gt;I work on &lt;span class="typed" style="color:#a50509";&gt;&lt;/span&gt;&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="posts-list"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% for post in paginator.posts %}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;article class="post-preview"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="{{ post.url | prepend: site.baseurl }}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h2 class="post-title"&gt;{{ post.title }}&lt;/h2&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% if post.subtitle %}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h3 class="post-subtitle"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{{ post.subtitle }}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% endif %}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/a&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="post-meta"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Posted on {{ post.date | date: "%B %-d, %Y" }}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="post-entry-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% if post.image %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="post-image"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="{{ post.url | prepend: site.baseurl }}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;img src="{{ post.image }}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% endif %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="post-entry"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{% assign excerpt_word_count = post.excerpt | number_of_words %}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{% if post.content != post.excerpt or excerpt_word_count &gt; site.excerpt_length %}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more"&gt;[Read&amp;nbsp;More]&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{% endif %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% if post.tags.size &gt; 0 %}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="blog-tags"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Tags:</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% if site.link-tags %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% for tag in post.tags %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="{{ site.baseurl }}/tags#{{- tag -}}"&gt;{{- tag -}}&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% endfor %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% else %}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{{ post.tags | join: ", " }}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% endif %}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% endif %}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">   </span>&lt;/article&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% endfor %}</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">{% if paginator.total_pages &gt; 1 %}</p>
+<p class="p1">&lt;ul class="pager main-pager"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% if paginator.previous_page %}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;li class="previous"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}"&gt;&amp;larr; Newer Posts&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% endif %}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% if paginator.next_page %}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;li class="next"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}"&gt;Older Posts &amp;rarr;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% endif %}</p>
+<p class="p1">&lt;/ul&gt;</p>
+<p class="p1">{% endif %}</p>
+</body>
+</html>
