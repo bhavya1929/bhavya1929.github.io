@@ -8,7 +8,7 @@ Below are **Publications (grouped reverse chronologically)**.
 
 **2026**
 - <span style="background-color:lightgrey">**preprint**</span>&nbsp; HyperMap: An Efficient Meta-Learning Framework for Transferring Perturbation Responses Across Diverse Biological Contexts  
-   ***B. Dhaka***, [co-authors TBA]  
+   ***B. Dhaka***, J. Gao, T. Ideker
    <span style="color:blue">Submitted, 2026.</span>  
    [GitHub](https://github.com/bhavya1929/HyperMap)
 
