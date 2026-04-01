@@ -9,12 +9,10 @@ Below are **Publications (grouped reverse chronologically)**.
 **2026**
 - <span style="background-color:lightgrey">**preprint**</span>&nbsp; HyperMap: An Efficient Meta-Learning Framework for Transferring Perturbation Responses Across Diverse Biological Contexts  
    ***B. Dhaka***, J. Gao, T. Ideker
-   <span style="color:blue">Submitted, 2026.</span>  
    [GitHub](https://github.com/bhavya1929/HyperMap)
 
 - <span style="background-color:lightgrey">**preprint**</span>&nbsp; The human RNA-DNA interactome is cell type-specific and dynamic  
    A. Lambolez, ..., ***B. Dhaka***, ..., P. Carninci et al. (FANTOM6 Consortium)  
-   <span style="color:blue">Under review, Nature, 2026.</span>
 
 **2024**
 - <span style="background-color: thistle">**journal**</span>&nbsp; Functional identification of cis-regulatory long noncoding RNAs at controlled false-discovery rates  
