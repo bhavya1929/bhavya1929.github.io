@@ -2,28 +2,23 @@
 
 plugins:
   - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-sitemap
 
 url: "https://bhavya1929.github.io"
 baseurl: ""
 
-# --- Site Info --- #
-
 title: Bhavya Dhaka
 description: "Computational Biologist & ML Scientist | Cancer Genomics · Perturbation Biology · Drug Discovery"
 
-# --- Navigation bar --- #
+# --- Navigation bar options --- #
 
 navbar-links:
   Resume: "https://github.com/bhavya1929/bhavya1929.github.io/blob/master/doc/Bhavya_CV.pdf"
   Publications: "publications"
   Activities: "activities"
 
-# Your headshot — upload a file named bhavya.jpg to the img/ folder
 avatar: "/img/bhavya.jpg"
 
-# --- Colours --- #
+# --- Background colour/image options --- #
 
 navbar-col: "#F5F5F5"
 navbar-text-col: "#404040"
@@ -35,7 +30,7 @@ footer-col: "#F5F5F5"
 footer-text-col: "#777777"
 footer-link-col: "#404040"
 
-# --- Footer --- #
+# --- Footer options --- #
 
 author:
   name: Bhavya Dhaka
@@ -44,6 +39,12 @@ social-network-links:
   email: "bhavya.dhaka@ucdconnect.ie"
   github: bhavya1929
   linkedin: bhavyadhaka
+
+share-links-active:
+  twitter: false
+  facebook: false
+  google: false
+  linkedin: true
 
 # --- Misc --- #
 
@@ -85,3 +86,61 @@ exclude:
   - LICENSE
   - README.md
   - Vagrantfile
+
+prose:
+  rooturl: '_posts'
+  media: 'img'
+  ignore:
+    - 404.html
+    - LICENSE
+    - feed.xml
+    - _config.yml
+    - /_layouts
+    - /_includes
+    - /css
+    - /img
+    - /js
+  metadata:
+    _posts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Post title"
+          placeholder: "Title"
+          alterable: true
+      - name: "subtitle"
+        field:
+          element: "textarea"
+          label: "Subtitle"
+          placeholder: "A description of your post."
+          alterable: true
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date"
+          help: "Enter date of post."
+          placeholder: "yyyy-mm-dd"
+          alterable: true
+      - name: "image"
+        field:
+          element: "text"
+          label: "Image"
+          help: "Add a thumbnail image to your post."
+          placeholder: "Thumbnail"
+          alterable: true
+      - name: "published"
+        field:
+          element: "checkbox"
+          label: "Publish"
+          help: "Check to publish post, uncheck to hide."
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+
+# Beautiful Jekyll / Dean Attali
+# 2fc73a3a967e97599c9763d05e564189
