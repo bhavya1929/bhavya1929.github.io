@@ -12,7 +12,7 @@ description: "Computational Biologist & ML Scientist | Cancer Genomics · Pertur
 # --- Navigation bar options --- #
 
 navbar-links:
-  Resume: "https://github.com/bhavya1929/bhavya1929.github.io/blob/master/doc/Bhavya_CV.pdf"
+  Resume: "resume"
   Publications: "publications"
   Activities: "activities"
 
