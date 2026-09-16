@@ -1,0 +1,73 @@
+# =============================================================================
+#  EXPERIENCE PAGE DATA
+#  This is the ONLY file you edit to add or change content on /experience.
+#
+#  HOW IT WORKS
+#  - Each item under `timeline:` is one card (a job or a degree).
+#  - The `skills:` list on a card is what lights up in the sidebar when you
+#    hover that card. Just write the skill names normally.
+#  - The sidebar is built automatically from every skill your cards mention,
+#    in the order they first appear, followed by anything in `extra_skills`.
+#    So adding a job with a new skill makes the chip appear on its own —
+#    the names can never get out of sync.
+#
+#  TO ADD A JOB: copy a block below, paste it at the top of `timeline:`
+#  (newest first), and edit the fields. `org_url`, `note`, and `current`
+#  are all optional — delete the lines you don't need.
+# =============================================================================
+
+# Small intro line under the "Experience" title.
+tagline: "My Journey Through Computational Biology: From Genomics to Modern AI"
+
+timeline:
+  - kind: work            # "work" or "education" (controls the pill + dot colour)
+    current: true         # true = filled dot (ongoing / most recent). optional.
+    date: "2024 — 2026"
+    role: "Researcher"
+    org: "Ideker Lab, UC San Diego, USA"
+    org_url: "#"          # optional link. delete this line for no link.
+    desc: >
+      Developed deep-learning approaches for modelling and transferring perturbation 
+      responses across biological contexts, with a focus on biologically meaningful 
+      prediction and evaluation.
+    tags: [Deep-Learning, Perturbation Modelling, Benchmarking, Modern AI]  # shown on the card
+    skills: [PyTorch, Deep-Learning, Meta-Learning, Perturbation-Modelling, Transfer-Learning, Transformers, Benchmarking, Drug-Response-Prediction, Python, Representation-Learning, Graph Neural Networks, Autoencoders, VAEs, Foundation Model Benchmarking, Explainable-AI, Linear-Models, Data-Analysis, Data-Visualization, Jupyter, scRNA-seq, Perturb-seq, Linux, SLURM/HPC]
+
+  - kind: work
+    current: true
+    date: "2022 — Present"
+    role: "MSCA Doctoral Fellow"
+    org: "GoldLab, University College Dublin, Ireland"
+    org_url: "#"
+    note: "Marie Skłodowska-Curie Actions Fellowship — competitive EU-wide award"
+    desc: >
+      Developed computational and experimental approaches 
+      to identify and characterise regulatory non-coding RNA targets using functional genomics, CRISPR perturbation, and multi-omics data.
+    tags: [lncRNA Discovery, Regulatory Genomics, Multi-omics, CRISPR Screens]
+    skills: [lncRNA-Target-Discovery, Regulatory-Genomics, Multi-omics-Integration, Genome-Analysis, Genetics, Bioconductor, Functional-Genomics, Python, R, Bash, Pandas, NumPy, Jupyter, RStudio, Git/GitHub, Data-Analysis, Data-Visualization, Statistics, Biostatistics, Machine-Learning, Linear-Models, Mixed-Effects, scRNA-seq, Perturb-seq, CRISPR-Screens, Seurat, Scanpy, DESeq2, BEDtools, Reproducible-Pipelines, Cell-Ranger]
+
+  - kind: work
+    date: "2019 — 2022"
+    role: "Bioinformatician"
+    org: "Onkoslab, National Centre for Biological Sciences (NCBS), India"
+    org_url: "#"
+    desc: >
+      Applied computational genomics and machine learning to study cancer 
+      regulatory mechanisms, tumour heterogeneity, and biomarkers of immunotherapy 
+      response across bulk and single-cell datasets.
+    tags: [Cancer Genomics, Multi-omic, Nextflow, FAIR principles]
+    skills: [Cancer-Genomics, ATAC-seq, RNA-seq, scRNA-seq, Linux, Python, R, Bash, Pandas, NumPy, Jupyter, RStudio, Git/GitHub, Data-Analysis, Data-Visualization, Statistics, Biostatistics, SLURM/HPC, Machine-Learning, Random-Forest, Nextflow-DSL2, Docker, Reproducible_Pipelines, Biomarker_Discovery, Linear-modelling, Workflow-Automation, STAR, BEDtools, Immunotherapy-Response, Seurat, Scanpy, DESeq2, Bioconductor, Computational-Genomics, Bioinformatics, SHAP, Computational-Biology, Signal-Interpretation]
+
+  - kind: education
+    date: "Graduate"
+    role: "MSc, Bioinformatics & Applied Biotechnology"
+    org: "Institute of Bioinformatics and Applied Biotechnology  (IBAB), India"
+    # no org_url -> renders as plain text, not a link
+    desc: >
+      Foundations in bioinformatics, genomics, and applied biotechnology.
+    tags: [Bioinformatics, Programming, Bench skills, Genomics]
+    skills: [Bioinformatics, Python, Java, Perl, C++, C, R, Statistics, Biostatistics, QC, SAMtools, Genetics, Cell-Signalling, DNA/RNA-Extraction, Immunofluorescence, Transfection, BWA]
+
+# Optional: skills you want visible in the sidebar but haven't tied to a job yet.
+# They stay dim until some card lists them in its `skills:`. Delete any you don't want.
+extra_skills: []

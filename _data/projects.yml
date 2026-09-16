@@ -1,0 +1,54 @@
+# =============================================================================
+#  PROJECTS  (shown at the bottom of the Experience page)
+#  Add a project = add an item under the right group. Add a whole new group
+#  = copy a `- name:` block. color is "blue" or "green" (the dot + label tint).
+#  url and tags are optional.
+# =============================================================================
+
+groups:
+  - name: RESEARCH PROJECTS
+    color: blue
+    items:
+      - title: HyperMAP
+        desc: >
+          PyTorch meta-learning framework that transfers gene and drug
+          perturbation responses across biological contexts.
+        tags: [PyTorch, Deep-Learning, Perturbation]
+        url: "https://github.com/bhavya1929/HyperMap"
+
+      - title: TransCistor
+        desc: >
+          Cis-regulatory lncRNA discovery framework characterising 268 human
+          and 134 mouse regulatory targets at controlled false-discovery rates.
+        tags: [lncRNA, Regulatory Genomics, R]
+        url: "https://github.com/bhavya1929/TransCistor_v2"
+
+      - title: p53 mutant landscape
+        desc: >
+          Differential chromatin accessibility landscape of gain-of-function mutant p53 tumours.
+        tags: [TCGA, Cancer Genomics, Multi-omics]
+        url: "https://github.com/bhavya1929/p53_mutant_atac"
+        
+
+      - title: Immunoproteasome
+        desc: >
+          Random-forest models evaluating pan-cancer immunoproteasome activity
+          as a predictor of immunotherapy response, benchmarked against
+          established markers.
+        tags: [TCAG, Immunotherapy, Cancer Genomics, Biomarkers]
+        url: "https://github.com/bhavya1929/immunoproteasome"
+
+  - name: Consortia & Collaborations
+    color: green
+    items:
+      - title: FANTOM6 — RNA–DNA Interactome
+        desc: >
+          Investigating regulatory elements involved in RNA–DNA interactions. Exploring links between DNA–DNA and RNA–DNA interaction landscapes.
+        tags: [Multi-omics, Consortium, RADICL-seq, RNA regulation ]
+        url: "https://www.biorxiv.org/content/10.64898/2026.08.25.746868v1.abstract"
+
+      - title: NIH — Small-Cell Lung Cancer scRNA-seq
+        desc: >
+          Pilot analysis of single-cell SCLC data to investigate how the local liver microenvironment influences tumour cell evolution.
+        tags: [scRNA-seq, Tumour Evolution, sc-RNA, SCLC]
+        url: "https://www.biorxiv.org/content/10.64898/2026.06.30.735617v1.abstract"

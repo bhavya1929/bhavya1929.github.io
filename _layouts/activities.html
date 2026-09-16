@@ -1,0 +1,103 @@
+---
+layout: base
+---
+{% include bd-theme.html %}
+
+<style>
+  .ac-wrap{max-width:940px;margin:0 auto;}
+  .ac-section{margin-bottom:58px;}
+
+  /* conferences — year rail + card */
+  .ac-conf{display:flex;flex-direction:column;gap:11px;}
+  .ac-row{display:grid;grid-template-columns:76px 1fr auto;gap:22px;align-items:center;
+    background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px 26px;
+    transition:border-color .16s,transform .16s,box-shadow .16s;}
+  .ac-row:hover{border-color:var(--blue-200);transform:translateX(3px);box-shadow:0 4px 14px rgba(24,90,122,.07);}
+  .ac-year{font-family:var(--mono);font-size:15.7px;color:var(--blue-deep);font-weight:500;}
+  .ac-name{font-size:18.4px;color:#26343b;}
+  .ac-role{font-family:var(--mono);font-size:11.2px;letter-spacing:.05em;text-transform:uppercase;
+    padding:5px 12px;border-radius:100px;white-space:nowrap;}
+  .ac-role.talk{background:var(--blue-100);color:var(--blue-deep);}
+  .ac-role.org{background:var(--green-100);color:var(--green-deep);}
+  .ac-role.poster{background:var(--bg-alt);color:var(--muted);border:1px solid var(--line);}
+
+  /* fellowships — tinted cards */
+  .ac-fellows{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .ac-fellow{background:linear-gradient(135deg,var(--green-50),#fff 75%);border:1px solid var(--green-100);
+    border-radius:13px;padding:22px 24px;}
+  .ac-fellow .yr{font-family:var(--mono);font-size:13.8px;color:var(--green-deep);}
+  .ac-fellow h4{font-family:var(--serif);font-weight:600;font-size:20.8px;margin:8px 0 8px;color:#16242c;}
+  .ac-fellow p{font-size:16.6px;color:var(--muted);margin:0;line-height:1.6;}
+
+  /* service — grouped lists */
+  .ac-service{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .ac-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:28px 30px;}
+  .ac-card.wide{grid-column:1 / -1;}
+  .ac-card h4{font-family:var(--serif);font-weight:600;font-size:20.8px;margin:0 0 16px;color:#16242c;}
+  .ac-card ul{margin:0;padding-left:20px;}
+  .ac-card li{font-size:17px;color:#3f4d54;line-height:1.65;margin-bottom:11px;}
+  .ac-card li::marker{color:var(--blue);}
+  .ac-card li:last-child{margin-bottom:0;}
+
+  @media (max-width:640px){
+    .ac-fellows,.ac-service{grid-template-columns:1fr;}
+    .ac-row{grid-template-columns:52px 1fr;grid-template-areas:"y n" "y r";row-gap:6px;}
+    .ac-year{grid-area:y;}.ac-name{grid-area:n;}.ac-role{grid-area:r;justify-self:start;}
+  }
+</style>
+
+<div class="bd bd-page">
+  <div class="bd-wrap">
+
+    <header class="bd-head">
+      <h1>Activities</h1>
+      <p>Conferences, fellowships, and the community and service work alongside the research.</p>
+    </header>
+
+    <div class="ac-wrap">
+
+      <section class="ac-section">
+        <div class="bd-label"><span class="dot"></span>Conferences &amp; Talks</div>
+        <div class="ac-conf">
+          {% for c in site.data.activities.conferences %}
+            {% assign role_dc = c.role | downcase %}
+            {% if role_dc contains 'talk' %}{% assign rc = 'talk' %}
+            {% elsif role_dc contains 'organis' or role_dc contains 'organiz' %}{% assign rc = 'org' %}
+            {% else %}{% assign rc = 'poster' %}{% endif %}
+            <div class="ac-row">
+              <span class="ac-year">{{ c.year }}</span>
+              <span class="ac-name">{{ c.name }}</span>
+              <span class="ac-role {{ rc }}">{{ c.role }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="ac-section">
+        <div class="bd-label green"><span class="dot"></span>Awards &amp; Fellowships</div>
+        <div class="ac-fellows">
+          {% for f in site.data.activities.fellowships %}
+            <div class="ac-fellow">
+              <span class="yr">{{ f.year }}</span>
+              <h4>{{ f.name }}</h4>
+              {% if f.note %}<p>{{ f.note }}</p>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="ac-section">
+        <div class="bd-label"><span class="dot"></span>Service &amp; Outreach</div>
+        <div class="ac-service">
+          {% for s in site.data.activities.service %}
+            <div class="ac-card{% if s.items.size > 3 %} wide{% endif %}">
+              <h4>{{ s.group }}</h4>
+              <ul>{% for it in s.items %}<li>{{ it }}</li>{% endfor %}</ul>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

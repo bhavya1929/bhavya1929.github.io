@@ -2,6 +2,17 @@
   <div class="container beautiful-jekyll-footer">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+        <!-- Download CV (shown on every page) -->
+        <div style="text-align:center; margin-bottom:14px;">
+          <a href="{{ '/doc/Bhavya_CV.pdf' | prepend: site.baseurl }}" download
+             style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace;
+                    font-size:13px; text-decoration:none; color:#145a7a; background:#eef6fb;
+                    border:1px solid #c3deee; border-radius:8px; padding:8px 16px;">
+            &#8595;&nbsp;Download CV
+          </a>
+        </div>
+
         <ul class="list-inline text-center footer-links">
           {%- for link in site.social-network-links -%}
             {%- assign curkey = link[0] -%}

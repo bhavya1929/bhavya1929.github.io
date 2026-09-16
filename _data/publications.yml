@@ -1,0 +1,107 @@
+# =============================================================================
+#  PUBLICATIONS  (newest first — keep them in reverse-chronological order)
+#
+#  TO ADD ONE: copy a block, put it in the right spot by year, fill it in.
+#    type:    "journal" or "preprint"  (sets the pill)
+#    me:      the substring of `authors` to bold — usually "Dhaka"
+#    venue:   full journal name shown in the line
+#    short:   short label shown on the coloured cover tile
+#    status:  optional grey note (e.g. "In submission")
+#    accent:  "blue" or "green" — the cover tile / card tint (alternate for variety)
+#    cover:   optional "/img/xxx.jpg" real journal cover; leave blank for the tile
+#    links:   any number of {label, url} buttons (DOI, bioRxiv, PubMed, Code…)
+#
+#  Your Google Scholar has the latest list:
+#  https://scholar.google.com/citations?user=3i6VxPEAAAAJ&hl=en
+#  Paste any newer papers here and they'll appear automatically.
+# =============================================================================
+
+items:
+
+
+
+  - year: 2026
+    type: preprint
+    accent: green
+    short: "bioRxiv"
+    cover: "/img/bio.jpg"
+    title: "HyperMap: An Efficient Framework for Transferring Perturbation Responses Across Diverse Biological Contexts"
+    authors: "B. Dhaka, J. Gao, T. Ideker"
+    me: "Dhaka"
+    venue: "bioRxiv"
+    links:
+      - { label: "bioRxiv", url: "https://www.biorxiv.org/content/10.64898/2026.04.23.720505v1.full" }
+      - { label: "Code", url: "https://github.com/bhavya1929/HyperMap" }
+      
+  - year: 2026
+    type: preprint
+    accent: blue
+    short: "bioRxiv"
+    cover: "/img/bio.jpg"
+    title: "The human RNA–DNA interactome is cell type-specific and dynamic"
+    authors: "A. Lambolez, P. Sahlén, W. Kang, X. Shu, J. Severin, R. Pracana, …, B. Dhaka, … et al. (FANTOM6 Consortium)"
+    me: "Dhaka"
+    venue: "bioRxiv"
+    links:
+      - { label: "bioRxiv", url: "https://www.biorxiv.org/content/10.64898/2026.08.25.746868v1.full" }
+
+  - year: 2026
+    type: preprint
+    accent: green
+    short: "bioRxiv"
+    cover: "/img/bio.jpg"
+    title: "Hepatobiliary Progenitor-like Reprogramming in Liver Metastases"
+    authors: "A. K. Sharma, N. Takahashi, Y. Cao, A. Joshi, S. Zhuang, A. Kazi, …, B. Dhaka, … et al."
+    me: "Dhaka"
+    venue: "bioRxiv"
+    links:
+      - { label: "bioRxiv", url: "https://www.biorxiv.org/content/10.64898/2026.06.30.735617v1.full" }
+
+  - year: 2026
+    type: preprint
+    accent: blue
+    short: "bioRxiv"
+    cover: "/img/bio.jpg"
+    title: "Pan-cancer discovery of driver mutations in long noncoding RNAs reveals widespread functional rewiring of RNA regulatory elements"
+    authors: "S. Ramnarayanan, R. Koya, M. Soszynska-Jozwiak, M. Szabat, J. Roban, S. Bhutada, B. Dhaka, … et al."
+    me: "Dhaka"
+    venue: "bioRxiv"
+    links:
+      - { label: "bioRxiv", url: "https://www.biorxiv.org/content/10.64898/2026.06.10.730876v1.full" }
+
+
+  - year: 2024
+    type: journal
+    accent: blue
+    short: "NAR"
+    cover: "/img/nucleic_acids_research.png"
+    title: "Functional identification of cis-regulatory long noncoding RNAs at controlled false-discovery rates"
+    authors: "B. Dhaka, M. Zimmerli, D. Hanhart, M. B. Moser, H. Guillen-Ramirez, S. Mishra, … et al."
+    me: "Dhaka"
+    venue: "Nucleic Acids Research"
+    links:
+      - { label: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov/38348970/" }
+
+  - year: 2023
+    type: journal
+    accent: green
+    short: "Mol. Oncol."
+    cover: "/img/mol_onc.png"
+    title: "Prognostic association of immunoproteasome expression in solid tumours is governed by the immediate immune environment"
+    authors: "R. Kumar*, B. Dhaka*, S. Sahoo, M. K. Jolly, R. Sabarinathan"
+    me: "Dhaka"
+    venue: "Molecular Oncology"
+    links:
+      - { label: "DOI", url: "https://febs.onlinelibrary.wiley.com/doi/full/10.1002/1878-0261.13443" }
+
+  - year: 2021
+    type: journal
+    accent: blue
+    short: "BMC Cancer"
+    cover: "/img/bmc.jpeg"
+    title: "Differential chromatin accessibility landscape of gain-of-function mutant p53 tumours"
+    authors: "B. Dhaka & R. Sabarinathan"
+    me: "Dhaka"
+    venue: "BMC Cancer"
+    links:
+      - { label: "DOI", url: "https://link.springer.com/article/10.1186/s12885-021-08362-x" }

@@ -1,0 +1,39 @@
+# =============================================================================
+#  ACTIVITIES  (conferences, fellowships, service)
+#  Edit freely. In `conferences`, `role` containing "Talk" shows a blue pill,
+#  "Organis" shows green, anything else (Poster) is neutral.
+# =============================================================================
+
+conferences:
+  - { year: 2026, name: "Perturb2026 Conference", role: "Selected Talk" }
+  - { year: 2025, name: "EMBL Conference: Cancer Genomics", role: "Selected Talk" }
+  - { year: 2024, name: "EACR Cancer Genomics, Multi-omics and Computational Biology", role: "Poster" }
+  - { year: 2024, name: "Nature Conference: RNA at the Bench and Bedside IV", role: "Poster" }
+  - { year: 2023, name: "FANTOM6 International Conference", role: "Poster" }
+  - { year: 2023, name: "Irish Computational Biology and Genomics (ICBG) Symposium", role: "Organiser & Presenter" }
+  - { year: 2021, name: "EACR Annual Congress", role: "Poster" }
+
+fellowships:
+  - year: 2022
+    name: "Marie Skłodowska-Curie Actions (MSCA) PhD Fellowship"
+    note: "Competitive EU-wide doctoral fellowship awarded to outstanding early-stage researchers."
+  - year: 2022
+    name: "Indian Council of Medical Research (ICMR) Senior Research Fellowship"
+  - year: 2019
+    name: "Bangalore Life Science Cluster (BLiSC) Fellowship"
+
+service:
+  - group: "Committee Engagement"
+    items:
+      - "Member, Centre for Research Training (CRT) Genomics Data Science PhD Review & Training Committee (2024–Present)"
+      - "Member, CRT Career Series Committee (2023–2024)"
+      - "Organised arm of Pint of Science Ireland (2023)"
+  - group: "Event Organisation"
+    items:
+      - "Led sponsorship and organised the Irish Computational Biology and Genomics (ICBG) Symposium (2023) — 150+ attendees, secured industry sponsorship, coordinated invited international speakers."
+      - "Organised the CRT Annual Career Symposium (2025) — connecting PhD researchers with industry and academic career pathways."
+      - "Organised and chaired the CRT Industry Seminar Series — monthly seminars featuring invited international researchers and industry speakers across biotech and pharma (2023–2024)."
+      - "Participated in local science outreach programs engaging the public with genomics and precision medicine."
+  - group: "Peer Review"
+    items:
+      - "Reviewer, Elsevier (ScienceDirect) — Computational Biology"
