@@ -35,7 +35,7 @@ groups:
           Random-forest models evaluating pan-cancer immunoproteasome activity
           as a predictor of immunotherapy response, benchmarked against
           established markers.
-        tags: [TCAG, Immunotherapy, Cancer Genomics, Biomarkers]
+        tags: [TCGA, Immunotherapy, Cancer Genomics, Biomarkers]
         url: "https://github.com/bhavya1929/immunoproteasome"
 
   - name: Consortia & Collaborations
