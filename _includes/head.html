@@ -1,3 +1,21 @@
+{% if page.url == "/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ site.author.name }}",
+  "url": "{{ site.url }}",
+  "image": "{{ site.url }}{{ site.avatar }}",
+  "jobTitle": "{{ site.description }}",
+  "sameAs": [
+    "https://github.com/{{ site.social-network-links.github }}",
+    "https://www.linkedin.com/in/{{ site.social-network-links.linkedin }}",
+    "https://scholar.google.com/citations?user={{ site.social-network-links.google-scholar | split: '&' | first }}"
+  ]
+}
+</script>
+{% endif %}
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

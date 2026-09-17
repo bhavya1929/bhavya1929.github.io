@@ -168,12 +168,13 @@ Preserves the existing big image banner system:
               <div class="{{ include.type }}-heading">
 
                 <h1>
-                  {% if page.title %}
-                    {{ page.title }}
-                  {% else %}
-                    <br/>
-                  {% endif %}
-                </h1>
+                {% if page.url == "/" %}<span class="sr-only">Bhavya Dhaka.</span> {% endif %}
+                {% if page.title %}
+                  {{ page.title }}
+                {% else %}
+                  <br/>
+                {% endif %}
+               </h1>
 
 
                 {% if page.subtitle %}

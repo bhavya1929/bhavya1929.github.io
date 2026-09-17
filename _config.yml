@@ -6,9 +6,20 @@ plugins:
 url: "https://www.bhavyadhaka.info"
 baseurl: ""
 
-title: Bhavya Dhaka
-description: "Computational Biologist & AI Scientist | Cancer Genomics · Perturbation Biology · Drug Discovery"
+title: "Bhavya Dhaka | Computational Biologist & AI Scientist"
+description: "Bhavya Dhaka is a computational biologist and AI scientist working on cancer genomics, single-cell genomics, perturbation biology, and RNA therapeutics for drug discovery."
 
+
+# --- SAMEAS  options --- #
+
+social:
+  name: Bhavya Dhaka
+  links:
+    - "https://github.com/bhavya1929"
+    - "https://www.linkedin.com/in/bhavyadhaka"
+    - "https://scholar.google.com/citations?user=3i6VxPEAAAAJ&hl=en"
+    
+    
 # --- Navigation bar options --- #
 
 navbar-links:
@@ -18,6 +29,7 @@ navbar-links:
   Beyond the Lab: 'places'
 
 avatar: "/img/bhavya.jpg"
+logo: /img/bhavya.jpg
 
 # --- Background colour/image options --- #
 
