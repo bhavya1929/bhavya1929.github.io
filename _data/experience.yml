@@ -25,7 +25,7 @@ timeline:
     date: "2024 — 2026"
     role: "Researcher"
     org: "Ideker Lab, UC San Diego, USA"
-    org_url: "#"          # optional link. delete this line for no link.
+    org_url: "https://idekerlab.org/"          # optional link. delete this line for no link.
     desc: >
       Developed deep-learning approaches for modelling and transferring perturbation 
       responses across biological contexts, with a focus on biologically meaningful 
@@ -38,7 +38,7 @@ timeline:
     date: "2022 — Present"
     role: "MSCA Doctoral Fellow"
     org: "GoldLab, University College Dublin, Ireland"
-    org_url: "#"
+    org_url: "https://www.gold-lab.org/"
     note: "Marie Skłodowska-Curie Actions Fellowship — competitive EU-wide award"
     desc: >
       Developed computational approaches 
@@ -50,7 +50,7 @@ timeline:
     date: "2019 — 2022"
     role: "Bioinformatician"
     org: "Onkoslab, National Centre for Biological Sciences (NCBS), India"
-    org_url: "#"
+    org_url: "https://sites.google.com/view/onkoslab/home?pli=1&authuser=0"
     desc: >
       Applied computational genomics and machine learning to study cancer 
       regulatory mechanisms, tumour heterogeneity, and biomarkers of immunotherapy 
@@ -62,6 +62,7 @@ timeline:
     date: "Graduate"
     role: "MSc, Bioinformatics & Applied Biotechnology"
     org: "Institute of Bioinformatics and Applied Biotechnology  (IBAB), India"
+    org_url: "https://www.ibab.ac.in/"
     # no org_url -> renders as plain text, not a link
     desc: >
       Foundations in bioinformatics, genomics, and applied biotechnology.

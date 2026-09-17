@@ -26,6 +26,7 @@ Content from _data/experience.yml and _data/projects.yml.
 
 {% assign all_skills = all_skills | uniq %}
 
+
 <style>
 
   /* =========================================================
@@ -314,8 +315,8 @@ Content from _data/experience.yml and _data/projects.yml.
 
 
   /* =========================================================
-     LINKED SKILL STATE
-     works on hover, keyboard and touch
+     LINKED STATE
+     works on desktop, keyboard and touch
   ========================================================= */
 
   .xp-grid.spotlight .xp-skill {
@@ -368,7 +369,38 @@ Content from _data/experience.yml and _data/projects.yml.
   }
 
 
-  /* actual hover effects only on devices that support hover */
+  /* persistent selected state for tapped experience */
+
+  .xp-entry.touch-active {
+    background: var(--blue-50);
+    border-color: var(--blue-200);
+
+    box-shadow:
+      0 10px 28px rgba(24,90,122,.07);
+
+    transform: translateY(-1px);
+  }
+
+
+  .xp-entry.touch-active::after {
+    content: "Selected";
+
+    position: absolute;
+    top: 14px;
+    right: 16px;
+
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    color: var(--blue-deep);
+  }
+
+
+  /* =========================================================
+     DESKTOP HOVER ONLY
+  ========================================================= */
 
   @media (hover: hover) {
 
@@ -382,6 +414,7 @@ Content from _data/experience.yml and _data/projects.yml.
 
       transform: translateY(-1px);
     }
+
 
     .xp-skill:hover {
       background: var(--blue-100);
@@ -554,6 +587,12 @@ Content from _data/experience.yml and _data/projects.yml.
     .xp-entry::before {
       left: -22px;
       top: 25px;
+    }
+
+    .xp-entry.touch-active::after {
+      top: 10px;
+      right: 12px;
+      font-size: 8.5px;
     }
 
     .xp-proj-grid {
@@ -745,7 +784,7 @@ Content from _data/experience.yml and _data/projects.yml.
         </div>
 
         <p class="xp-skills-note">
-          Hover or tap a skill to see where it connects.
+          Hover or tap an experience or skill to see how they connect.
         </p>
 
 
@@ -892,7 +931,12 @@ Content from _data/experience.yml and _data/projects.yml.
 
     var s = set(entry);
 
+    grid.classList.remove('spotlight-rev');
     grid.classList.add('spotlight');
+
+    entries.forEach(function (e) {
+      e.classList.remove('active');
+    });
 
     entry.classList.add('active');
 
@@ -930,7 +974,12 @@ Content from _data/experience.yml and _data/projects.yml.
     var k =
       skill.getAttribute('data-skill');
 
+    grid.classList.remove('spotlight');
     grid.classList.add('spotlight-rev');
+
+    skills.forEach(function (s) {
+      s.classList.remove('linked');
+    });
 
     entries.forEach(function (entry) {
 
@@ -964,11 +1013,38 @@ Content from _data/experience.yml and _data/projects.yml.
   }
 
 
+  function clearTouchEntries() {
+
+    entries.forEach(function (entry) {
+      entry.classList.remove('touch-active');
+    });
+
+  }
+
+
+  function clearAllTouchStates() {
+
+    clearTouchSkills();
+    clearTouchEntries();
+    clearSkill();
+    clearEntry();
+
+  }
+
+
   /* =========================================================
      EXPERIENCE ENTRIES
   ========================================================= */
 
   entries.forEach(function (entry) {
+
+    entry.setAttribute(
+      'tabindex',
+      '0'
+    );
+
+
+    /* desktop hover */
 
     if (canHover) {
 
@@ -981,29 +1057,75 @@ Content from _data/experience.yml and _data/projects.yml.
 
       entry.addEventListener(
         'mouseleave',
-        clearEntry
+        function () {
+
+          if (!entry.classList.contains('touch-active')) {
+            clearEntry();
+          }
+
+        }
       );
 
     }
 
 
-    entry.setAttribute(
-      'tabindex',
-      '0'
-    );
-
+    /* keyboard */
 
     entry.addEventListener(
       'focus',
       function () {
-        enterEntry(entry);
+
+        if (canHover) {
+          enterEntry(entry);
+        }
+
       }
     );
 
 
     entry.addEventListener(
       'blur',
-      clearEntry
+      function () {
+
+        if (
+          canHover &&
+          !entry.classList.contains('touch-active')
+        ) {
+          clearEntry();
+        }
+
+      }
+    );
+
+
+    /* phone / touch */
+
+    entry.addEventListener(
+      'click',
+      function () {
+
+        if (canHover) return;
+
+
+        var alreadyActive =
+          entry.classList.contains('touch-active');
+
+
+        clearTouchEntries();
+        clearTouchSkills();
+        clearSkill();
+        clearEntry();
+
+
+        if (!alreadyActive) {
+
+          entry.classList.add('touch-active');
+
+          enterEntry(entry);
+
+        }
+
+      }
     );
 
   });
@@ -1051,7 +1173,7 @@ Content from _data/experience.yml and _data/projects.yml.
     }
 
 
-    /* click / touch */
+    /* phone / touch */
 
     skill.addEventListener(
       'click',
@@ -1062,7 +1184,9 @@ Content from _data/experience.yml and _data/projects.yml.
 
 
         clearTouchSkills();
+        clearTouchEntries();
         clearSkill();
+        clearEntry();
 
 
         if (!alreadyActive) {
@@ -1108,13 +1232,15 @@ Content from _data/experience.yml and _data/projects.yml.
     'click',
     function (e) {
 
+      if (canHover) return;
+
+
       if (
         !e.target.closest('.xp-skill') &&
-        !canHover
+        !e.target.closest('.xp-entry')
       ) {
 
-        clearTouchSkills();
-        clearSkill();
+        clearAllTouchStates();
 
       }
 
