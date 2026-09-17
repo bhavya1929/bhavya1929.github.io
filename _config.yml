@@ -3,11 +3,11 @@
 plugins:
   - jekyll-seo-tag
 
-url: "https://bhavya1929.github.io"
+url: "https://www.bhavyadhaka.info"
 baseurl: ""
 
 title: Bhavya Dhaka
-description: "Computational Biologist & ML Scientist | Cancer Genomics · Perturbation Biology · Drug Discovery"
+description: "Computational Biologist & AI Scientist | Cancer Genomics · Perturbation Biology · Drug Discovery"
 
 # --- Navigation bar options --- #
 
