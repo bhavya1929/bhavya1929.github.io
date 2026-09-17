@@ -34,8 +34,8 @@ Content from _data/experience.yml and _data/projects.yml.
 
   .xp-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 46px;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 36px;
     align-items: start;
   }
 
@@ -252,7 +252,7 @@ Content from _data/experience.yml and _data/projects.yml.
     position: sticky;
     top: 24px;
 
-    padding: 22px 22px 24px;
+    padding: 19px 18px 21px;
 
     border: 1px solid var(--line);
     border-radius: 16px;
@@ -267,15 +267,15 @@ Content from _data/experience.yml and _data/projects.yml.
 
 
   .xp-skills .bd-label {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
 
   .xp-skills-note {
-    margin: -4px 0 16px;
+    margin: -3px 0 14px;
 
-    font-size: 12px;
-    line-height: 1.55;
+    font-size: 11.5px;
+    line-height: 1.5;
 
     color: var(--faint);
   }
@@ -284,14 +284,14 @@ Content from _data/experience.yml and _data/projects.yml.
   .xp-cloud {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 5px;
   }
 
 
   .xp-skill {
     font-family: var(--mono);
-    font-size: 10.7px;
-    line-height: 1.2;
+    font-size: 10.1px;
+    line-height: 1.15;
 
     color: var(--muted);
 
@@ -300,7 +300,9 @@ Content from _data/experience.yml and _data/projects.yml.
     border: 1px solid var(--line);
     border-radius: 999px;
 
-    padding: 5px 9px;
+    padding: 4px 8px;
+
+    cursor: pointer;
 
     transition:
       opacity .18s ease,
@@ -312,29 +314,65 @@ Content from _data/experience.yml and _data/projects.yml.
 
 
   /* =========================================================
-     SKILL LINK HIGHLIGHT
-     kept intentionally the same interaction
+     LINKED SKILL STATE
+     works on hover, keyboard and touch
   ========================================================= */
+
+  .xp-grid.spotlight .xp-skill {
+    opacity: .3;
+  }
+
+  .xp-grid.spotlight .xp-skill.linked {
+    opacity: 1;
+
+    color: var(--blue-deep);
+    background: var(--blue-100);
+    border-color: var(--blue-200);
+
+    transform: translateY(-1px);
+  }
+
+
+  .xp-entry.active {
+    background: var(--blue-50);
+
+    border-color: var(--blue-200);
+
+    box-shadow:
+      0 10px 28px rgba(24,90,122,.07);
+
+    transform: translateY(-1px);
+  }
+
+
+  .xp-grid.spotlight-rev .xp-entry {
+    opacity: .42;
+  }
+
+  .xp-grid.spotlight-rev .xp-entry.active {
+    opacity: 1;
+
+    background: var(--blue-50);
+
+    border-color: var(--blue-200);
+
+    box-shadow:
+      0 10px 28px rgba(24,90,122,.07);
+  }
+
+
+  .xp-skill.touch-active {
+    color: var(--blue-deep);
+    background: var(--blue-100);
+    border-color: var(--blue-200);
+  }
+
+
+  /* actual hover effects only on devices that support hover */
 
   @media (hover: hover) {
 
-    .xp-grid.spotlight .xp-skill {
-      opacity: .3;
-    }
-
-    .xp-grid.spotlight .xp-skill.linked {
-      opacity: 1;
-
-      color: var(--blue-deep);
-      background: var(--blue-100);
-      border-color: var(--blue-200);
-
-      transform: translateY(-1px);
-    }
-
-
-    .xp-entry:hover,
-    .xp-entry.active {
+    .xp-entry:hover {
       background: var(--blue-50);
 
       border-color: var(--blue-200);
@@ -344,23 +382,6 @@ Content from _data/experience.yml and _data/projects.yml.
 
       transform: translateY(-1px);
     }
-
-
-    .xp-grid.spotlight-rev .xp-entry {
-      opacity: .42;
-    }
-
-    .xp-grid.spotlight-rev .xp-entry.active {
-      opacity: 1;
-
-      background: var(--blue-50);
-
-      border-color: var(--blue-200);
-
-      box-shadow:
-        0 10px 28px rgba(24,90,122,.07);
-    }
-
 
     .xp-skill:hover {
       background: var(--blue-100);
@@ -498,7 +519,7 @@ Content from _data/experience.yml and _data/projects.yml.
      RESPONSIVE
   ========================================================= */
 
-  @media (max-width: 820px) {
+  @media (max-width: 900px) {
 
     .xp-grid {
       grid-template-columns: 1fr;
@@ -540,7 +561,12 @@ Content from _data/experience.yml and _data/projects.yml.
     }
 
     .xp-skills {
-      padding: 20px;
+      padding: 18px;
+    }
+
+    .xp-skill {
+      font-size: 10px;
+      padding: 5px 8px;
     }
 
   }
@@ -719,7 +745,7 @@ Content from _data/experience.yml and _data/projects.yml.
         </div>
 
         <p class="xp-skills-note">
-          Hover over an experience or skill to see where they connect.
+          Hover or tap a skill to see where it connects.
         </p>
 
 
@@ -834,15 +860,21 @@ Content from _data/experience.yml and _data/projects.yml.
 
   if (!grid) return;
 
+
   var entries =
     [].slice.call(
       grid.querySelectorAll('.xp-entry')
     );
 
+
   var skills =
     [].slice.call(
       grid.querySelectorAll('.xp-skill')
     );
+
+
+  var canHover =
+    window.matchMedia('(hover: hover)').matches;
 
 
   function set(entry) {
@@ -923,24 +955,43 @@ Content from _data/experience.yml and _data/projects.yml.
   }
 
 
+  function clearTouchSkills() {
+
+    skills.forEach(function (skill) {
+      skill.classList.remove('touch-active');
+    });
+
+  }
+
+
+  /* =========================================================
+     EXPERIENCE ENTRIES
+  ========================================================= */
+
   entries.forEach(function (entry) {
 
-    entry.addEventListener(
-      'mouseenter',
-      function () {
-        enterEntry(entry);
-      }
-    );
+    if (canHover) {
 
-    entry.addEventListener(
-      'mouseleave',
-      clearEntry
-    );
+      entry.addEventListener(
+        'mouseenter',
+        function () {
+          enterEntry(entry);
+        }
+      );
+
+      entry.addEventListener(
+        'mouseleave',
+        clearEntry
+      );
+
+    }
+
 
     entry.setAttribute(
       'tabindex',
       '0'
     );
+
 
     entry.addEventListener(
       'focus',
@@ -948,6 +999,7 @@ Content from _data/experience.yml and _data/projects.yml.
         enterEntry(entry);
       }
     );
+
 
     entry.addEventListener(
       'blur',
@@ -957,21 +1009,117 @@ Content from _data/experience.yml and _data/projects.yml.
   });
 
 
+  /* =========================================================
+     SKILLS
+  ========================================================= */
+
   skills.forEach(function (skill) {
 
+    skill.setAttribute(
+      'tabindex',
+      '0'
+    );
+
+    skill.setAttribute(
+      'role',
+      'button'
+    );
+
+
+    /* desktop hover */
+
+    if (canHover) {
+
+      skill.addEventListener(
+        'mouseenter',
+        function () {
+          enterSkill(skill);
+        }
+      );
+
+      skill.addEventListener(
+        'mouseleave',
+        function () {
+
+          if (!skill.classList.contains('touch-active')) {
+            clearSkill();
+          }
+
+        }
+      );
+
+    }
+
+
+    /* click / touch */
+
     skill.addEventListener(
-      'mouseenter',
+      'click',
       function () {
-        enterSkill(skill);
+
+        var alreadyActive =
+          skill.classList.contains('touch-active');
+
+
+        clearTouchSkills();
+        clearSkill();
+
+
+        if (!alreadyActive) {
+
+          skill.classList.add('touch-active');
+
+          enterSkill(skill);
+
+        }
+
       }
     );
 
+
+    /* keyboard */
+
     skill.addEventListener(
-      'mouseleave',
-      clearSkill
+      'keydown',
+      function (e) {
+
+        if (
+          e.key === 'Enter' ||
+          e.key === ' '
+        ) {
+
+          e.preventDefault();
+
+          skill.click();
+
+        }
+
+      }
     );
 
   });
+
+
+  /* =========================================================
+     TAP OUTSIDE TO CLEAR ON TOUCH DEVICES
+  ========================================================= */
+
+  document.addEventListener(
+    'click',
+    function (e) {
+
+      if (
+        !e.target.closest('.xp-skill') &&
+        !canHover
+      ) {
+
+        clearTouchSkills();
+        clearSkill();
+
+      }
+
+    }
+  );
 
 })();
 
