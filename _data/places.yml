@@ -1,0 +1,285 @@
+# =============================================================================
+#  PLACES PAGE DATA  ("Beyond the Lab")
+#  This is the ONLY file you edit to add cities or places.
+#
+#  HOW IT WORKS
+#  - Each item under `cities:` is one card. It expands in place on click to
+#    show two lists: `cafes` and `restaurants`. Either list can be left empty
+#    (as `[]`) if a city only has one category — its section just won't show.
+#  - The header stats line ("N cities · N places · N countries") is computed
+#    automatically from this data. You never edit numbers by hand.
+#  - Cities can have any number of places — there's no limit, and nothing
+#    else needs to change when you add more.
+#
+#  TO ADD A CITY: copy a whole `- name:` block under `cities:` and edit it.
+#  TO ADD A PLACE: copy one `{ name: ..., note: ... }` line inside `cafes:`
+#  or `restaurants:` for the right city.
+#  Keep `note:` to one short line — that's the whole design.
+#
+#  `lat:` / `lon:` place the city's dot on the map above the cards. Use the
+#  city's approximate center (a quick "[city name] coordinates" search gives
+#  you this). The dot's SIZE is worked out automatically from how many
+#  places that city has — you never set a size by hand.
+# =============================================================================
+
+tagline: "Some science. A lot of food."
+
+intro: >
+  I love travelling for food almost as much as I love travelling itself. I’m always chasing the places locals swear by, cafés 
+  tucked away on side streets, and meals that randomly pop back into my head on a Monday afternoon.
+
+cities:
+
+  - name: Dublin
+    country: Ireland
+    lat: 53.3498
+    lon: -6.2603
+    cafes:
+      - { name: "Elliot's", note: "They keep experimenting with new flavours, and they never miss." }
+      - { name: "Brew Lab", note: "A little pretentious, but honestly, it lives up to it." }
+      - { name: "Alma", note: "Their sweet potato harissa and granola bowls are so good." }
+    restaurants:
+      - { name: "The Old Spot", note: "Go for the Sunday roast." }
+      - { name: "Darkey Kelly's", note: "For their Guinness stew." }
+      - { name: "The Seafood Café", note: "Their oysters. Enough said." }
+      - { name: "The Hole in the Wall", note: "Best pint of Guinness in Dublin, according to me." }
+      - { name: "Bunsen", note: "Simple burgers done very, very well." }
+
+  - name: Galway
+    country: Ireland
+    lat: 53.2707
+    lon: -9.0568
+    cafes: []
+    restaurants:
+      - { name: "Hooked", note: "Get the fish and chips." }
+      - { name: "Il Vicolo", note: "Cosy Italian food with lovely local ingredients." }
+      - { name: "The Dough Bros", note: "A Galway pizza stop I would happily repeat." }
+
+  - name: Killarney
+    country: Ireland
+    lat: 52.0599
+    lon: -9.5044
+    cafes:
+      - { name: "Good Boy Bagels", note: "If I am missing proper bagels in Ireland, this is where I go." }
+      - { name: "The Fat Cat Café", note: "After walking the Gap of Dunloe, their soup and sandwiches hit differently." }
+    restaurants: []
+
+  - name: Kilkenny
+    country: Ireland
+    lat: 52.6541
+    lon: -7.2448
+    cafes: []
+    restaurants:
+      - { name: "Campagne", note: "Such a random find on a trip. Great brisket!" }
+
+  - name: Bergamo
+    country: Italy
+    lat: 45.6983
+    lon: 9.6773
+    cafes: []
+    restaurants:
+      - { name: "Il Circolino Città Alta", note: "Magical atmosphere, good wine, very easy to stay too long." }
+      - { name: "Da Giuliana", note: "A quirky little find with great food and lovely people." }
+
+  - name: Bologna
+    country: Italy
+    lat: 44.4949
+    lon: 11.3426
+    cafes: []
+    restaurants:
+      - { name: "Sfoglia Rina", note: "Probably my favourite pasta in Bologna." }
+      - { name: "Mò Mortadella Lab", note: "Mortadella sandwiches!" }
+
+  - name: Florence
+    country: Italy
+    lat: 43.7696
+    lon: 11.2558
+    cafes: []
+    restaurants:
+      - { name: "Trattoria Sabatino", note: "For a proper traditional Florentine meal." }
+
+  - name: Venice
+    country: Italy
+    lat: 45.4408
+    lon: 12.3155
+    cafes:
+      - { name: "Rosa Salva", note: "Early morning pastries and coffee before the city gets busy." }
+    restaurants:
+      - { name: "Adagio", note: "A lovely little breakfast stop." }
+
+  - name: Rotterdam
+    country: Netherlands
+    lat: 51.9244
+    lon: 4.4777
+    cafes: []
+    restaurants:
+      - { name: "Markthal", note: "Stroll around, eat cheese, buy pastries, repeat." }
+
+  - name: Berlin
+    country: Germany
+    lat: 52.5200
+    lon: 13.4050
+    cafes: []
+    restaurants:
+      - { name: "Cargo Gastronomia", note: "Still confused about why some of my favourite lasagna was in Berlin, but here we are." }
+      - { name: "Bratpfanne Steglitz", note: "For currywurst. No complicated reason needed." }
+
+  - name: San Diego
+    country: USA
+    lat: 32.7157
+    lon: -117.1611
+    cafes:
+      - { name: "Cliffhanger Café", note: "Get a hot dog and stay for the view." }
+    restaurants:
+      - { name: "The Smoking Goat", note: "Try the chorizo mussels." }
+      - { name: "Ironside Fish & Oyster", note: "Tuesday oyster happy hour might be one of life's better ideas." }
+      - { name: "Sisters Pizza", note: "Wrong coast, great pizza." }
+      - { name: "Jack & Giulio's", note: "Apparently I need to find an Italian restaurant in every city." }
+      - { name: "Cloak & Petal", note: "When looking for a good casual sushi spot." }
+      - { name: "Farmer & The Seahorse", note: "Made for a lazy Sunday breakfast." }
+
+  - name: Cape Town
+    country: South Africa
+    lat: -33.9249
+    lon: 18.4241
+    cafes:
+      - { name: "Little Grand Café", note: "Try the lobster croissant!" }
+    restaurants: []
+
+  - name: Los Angeles
+    country: USA
+    lat: 34.0522
+    lon: -118.2437
+    cafes:
+      - { name: "Café Dulce", note: "Try everything. Red bean, ube buns, whatever looks interesting." }
+    restaurants:
+      - { name: "KazuNori", note: "Really good hand rolls and sake." }
+
+  - name: Las Vegas
+    country: USA
+    lat: 36.1699
+    lon: -115.1398
+    cafes: []
+    restaurants:
+      - { name: "Mon Ami Gabi", note: "Their Cuban sandwich are so good." }
+
+  - name: Seattle
+    country: USA
+    lat: 47.6062
+    lon: -122.3321
+    cafes: []
+    restaurants:
+      - { name: "Place Pigalle", note: "A great local spot in Seattle" }
+      - { name: "Pike Place Market", note: "Just wander around hungry and find your pick." }
+
+  - name: New Orleans
+    country: USA
+    lat: 29.9511
+    lon: -90.0715
+    cafes:
+      - { name: "Café du Monde", note: "Chicory coffee, beignets and jazz." }
+    restaurants:
+      - { name: "Pêche Seafood Grill", note: "Probably some of the best flavours on this whole list." }
+      - { name: "Felix's Restaurant & Oyster Bar", note: "Try the chargrilled oysters." }
+      - { name: "Cochon Butcher", note: "Go for the muffuletta." }
+      - { name: "Brennan's", note: "A classic New Orleans breakfast!" }
+
+  - name: Goa
+    country: India
+    lat: 15.2993
+    lon: 74.1240
+    cafes:
+      - { name: "Baba Au Rhum", note: "A Goa café I keep wanting to return to." }
+    restaurants:
+      - { name: "The Fisherman's Wharf", note: "Seafood by the water. About as fresh as it gets." }
+
+  - name: Bengaluru
+    country: India
+    lat: 12.9716
+    lon: 77.5946
+    cafes:
+      - { name: "Third Wave Coffee", note: "Coffee shop open till 11 pm. Yes, I know!" }
+      - { name: "Blue Tokai", note: "A southern coffee gem" }
+    restaurants:
+      - { name: "Vidyarthi Bhavan", note: "Go for the dosa." }
+      - { name: "Kareem's", note: "Big flavours, great curries, no complaints." }
+
+  - name: Chandigarh
+    country: India
+    lat: 30.7333
+    lon: 76.7794
+    cafes: []
+    restaurants:
+      - { name: "Awadhi", note: "Kathi rolls. Why are these not universal?" }
+      - { name: "Colaba Canteen", note: "Street food energy without having to choose just one thing." }
+      - { name: "Sagar Ratna", note: "South Indian comfort food." }
+      - { name: "Home", note: "Still very hard to beat." }
+
+  - name: Zaragoza
+    country: Spain
+    lat: 41.6488
+    lon: -0.8891
+    cafes: []
+    restaurants:
+      - { name: "La Bodega de Chema", note: "Try the cabrito lechal al horno." }
+
+  - name: Rovaniemi
+    country: Finland
+    lat: 66.5039
+    lon: 25.7294
+    cafes: []
+    restaurants:
+      - { name: "GUSTAV Kitchen & Bar", note: "Lovely food, even better when you are hiding from a snowstorm." }
+
+  - name: Helsinki
+    country: Finland
+    lat: 60.1699
+    lon: 24.9384
+    cafes:
+      - { name: "Ekberg 1852", note: "Old school Helsinki café charm and plenty of pastries." }
+      - { name: "Kaffa Roastery", note: "Come for the coffee." }
+    restaurants:
+      - { name: "Kosmos", note: "Classic Helsinki and exactly the kind of place I like finding." }
+
+  - name: New York
+    country: USA
+    lat: 40.7128
+    lon: -74.0060
+    cafes:
+      - { name: "Apollo Bagels", note: "Their tomato and cream cheese bagel is ridiculously good." }
+      - { name: "Librae Bakery", note: "Always looking for a good croissant and coffee. This delivers." }
+      - { name: "L'Appartement 4F", note: "Another great croissant nearby, in case you are like me and one is not enough." }
+      - { name: "Junior's", note: "For the cheesecake, obviously." }
+      - { name: "Patisserie Tomoko", note: "A really interesting mix of French and Japanese flavours in pastries" }
+      - { name: "PopUp Bagels", note: "Soft, fluffy bagels that are very easy to keep eating." }
+    restaurants:
+      - { name: "Chelsea Market", note: "Less one meal, more a food crawl." }
+      - { name: "Duzan", note: "Possibly the best falafel I have had." }
+      - { name: "Bungalow", note: "Indian food with big, bold flavours." }
+      - { name: "Minetta Tavern", note: "Classic New York dinner energy." }
+
+  - name: Tallinn
+    country: Estonia
+    lat: 59.4370
+    lon: 24.7536
+    cafes:
+      - { name: "La Boulangerie", note: "Lovely pastries and coffee" }
+    restaurants:
+      - { name: "Vegan Restoran V", note: "Vegan dishes pulling flavours from all over the world." }
+
+  - name: Athens
+    country: Greece
+    lat: 37.9838
+    lon: 23.7275
+    cafes:
+      - { name: "Little Tree Books & Coffee", note: "Books, coffee and exactly the kind of place I can lose an afternoon in." }
+    restaurants:
+      - { name: "En Athinas (Εν Αθήναις)", note: "The best spanakopita I had in Athens." }
+
+  - name: Nafplio
+    country: Greece
+    lat: 37.5673
+    lon: 22.8016
+    cafes: []
+    restaurants:
+      - { name: "Pidalio Tavern", note: "A cozy local meal" }

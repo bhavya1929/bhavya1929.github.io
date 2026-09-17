@@ -30,8 +30,7 @@ items:
     me: "Dhaka"
     venue: "bioRxiv"
     links:
-      - { label: "bioRxiv", url: "https://www.biorxiv.org/content/10.64898/2026.04.23.720505v1.full" }
-      - { label: "Code", url: "https://github.com/bhavya1929/HyperMap" }
+      - { label: "View here", url: "https://www.biorxiv.org/content/10.64898/2026.04.23.720505v1.full" }
       
   - year: 2026
     type: preprint
@@ -43,7 +42,7 @@ items:
     me: "Dhaka"
     venue: "bioRxiv"
     links:
-      - { label: "bioRxiv", url: "https://www.biorxiv.org/content/10.64898/2026.08.25.746868v1.full" }
+      - { label: "View here", url: "https://www.biorxiv.org/content/10.64898/2026.08.25.746868v1.full" }
 
   - year: 2026
     type: preprint
@@ -55,7 +54,7 @@ items:
     me: "Dhaka"
     venue: "bioRxiv"
     links:
-      - { label: "bioRxiv", url: "https://www.biorxiv.org/content/10.64898/2026.06.30.735617v1.full" }
+      - { label: "View here", url: "https://www.biorxiv.org/content/10.64898/2026.06.30.735617v1.full" }
 
   - year: 2026
     type: preprint
@@ -67,7 +66,7 @@ items:
     me: "Dhaka"
     venue: "bioRxiv"
     links:
-      - { label: "bioRxiv", url: "https://www.biorxiv.org/content/10.64898/2026.06.10.730876v1.full" }
+      - { label: "View here", url: "https://www.biorxiv.org/content/10.64898/2026.06.10.730876v1.full" }
 
 
   - year: 2024
@@ -80,7 +79,7 @@ items:
     me: "Dhaka"
     venue: "Nucleic Acids Research"
     links:
-      - { label: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov/38348970/" }
+      - { label: "View here", url: "https://pubmed.ncbi.nlm.nih.gov/38348970/" }
 
   - year: 2023
     type: journal
@@ -92,7 +91,7 @@ items:
     me: "Dhaka"
     venue: "Molecular Oncology"
     links:
-      - { label: "DOI", url: "https://febs.onlinelibrary.wiley.com/doi/full/10.1002/1878-0261.13443" }
+      - { label: "View here", url: "https://febs.onlinelibrary.wiley.com/doi/full/10.1002/1878-0261.13443" }
 
   - year: 2021
     type: journal
@@ -104,4 +103,4 @@ items:
     me: "Dhaka"
     venue: "BMC Cancer"
     links:
-      - { label: "DOI", url: "https://link.springer.com/article/10.1186/s12885-021-08362-x" }
+      - { label: "View here", url: "https://link.springer.com/article/10.1186/s12885-021-08362-x" }

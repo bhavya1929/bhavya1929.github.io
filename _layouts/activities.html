@@ -1,103 +1,686 @@
 ---
 layout: base
 ---
+
 {% include bd-theme.html %}
 
 <style>
-  .ac-wrap{max-width:940px;margin:0 auto;}
-  .ac-section{margin-bottom:58px;}
 
-  /* conferences — year rail + card */
-  .ac-conf{display:flex;flex-direction:column;gap:11px;}
-  .ac-row{display:grid;grid-template-columns:76px 1fr auto;gap:22px;align-items:center;
-    background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px 26px;
-    transition:border-color .16s,transform .16s,box-shadow .16s;}
-  .ac-row:hover{border-color:var(--blue-200);transform:translateX(3px);box-shadow:0 4px 14px rgba(24,90,122,.07);}
-  .ac-year{font-family:var(--mono);font-size:15.7px;color:var(--blue-deep);font-weight:500;}
-  .ac-name{font-size:18.4px;color:#26343b;}
-  .ac-role{font-family:var(--mono);font-size:11.2px;letter-spacing:.05em;text-transform:uppercase;
-    padding:5px 12px;border-radius:100px;white-space:nowrap;}
-  .ac-role.talk{background:var(--blue-100);color:var(--blue-deep);}
-  .ac-role.org{background:var(--green-100);color:var(--green-deep);}
-  .ac-role.poster{background:var(--bg-alt);color:var(--muted);border:1px solid var(--line);}
-
-  /* fellowships — tinted cards */
-  .ac-fellows{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-  .ac-fellow{background:linear-gradient(135deg,var(--green-50),#fff 75%);border:1px solid var(--green-100);
-    border-radius:13px;padding:22px 24px;}
-  .ac-fellow .yr{font-family:var(--mono);font-size:13.8px;color:var(--green-deep);}
-  .ac-fellow h4{font-family:var(--serif);font-weight:600;font-size:20.8px;margin:8px 0 8px;color:#16242c;}
-  .ac-fellow p{font-size:16.6px;color:var(--muted);margin:0;line-height:1.6;}
-
-  /* service — grouped lists */
-  .ac-service{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-  .ac-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:28px 30px;}
-  .ac-card.wide{grid-column:1 / -1;}
-  .ac-card h4{font-family:var(--serif);font-weight:600;font-size:20.8px;margin:0 0 16px;color:#16242c;}
-  .ac-card ul{margin:0;padding-left:20px;}
-  .ac-card li{font-size:17px;color:#3f4d54;line-height:1.65;margin-bottom:11px;}
-  .ac-card li::marker{color:var(--blue);}
-  .ac-card li:last-child{margin-bottom:0;}
-
-  @media (max-width:640px){
-    .ac-fellows,.ac-service{grid-template-columns:1fr;}
-    .ac-row{grid-template-columns:52px 1fr;grid-template-areas:"y n" "y r";row-gap:6px;}
-    .ac-year{grid-area:y;}.ac-name{grid-area:n;}.ac-role{grid-area:r;justify-self:start;}
+  .ac-wrap {
+    max-width: 940px;
+    margin: 0 auto;
   }
+
+  .ac-section {
+    margin-bottom: 72px;
+  }
+
+  .ac-section:last-child {
+    margin-bottom: 0;
+  }
+
+
+  /* =========================================================
+     SECTION HEADERS
+  ========================================================= */
+
+  .ac-section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+
+    margin-bottom: 24px;
+  }
+
+  .ac-section-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    color: var(--faint);
+  }
+
+  .ac-section-title .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  .ac-section-title.green .dot {
+    background: var(--green);
+  }
+
+  .ac-section-note {
+    margin: 0;
+
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--faint);
+  }
+
+
+  /* =========================================================
+     CONFERENCES
+  ========================================================= */
+
+  .ac-conf {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    border-top: 1px solid var(--line);
+  }
+
+  .ac-row {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: center;
+
+    padding: 22px 4px;
+
+    border-bottom: 1px solid var(--line);
+
+    transition:
+      padding-left .18s ease,
+      color .18s ease;
+  }
+
+  .ac-row::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    width: 2px;
+    height: 0;
+
+    background: var(--blue);
+
+    transform: translateY(-50%);
+
+    transition: height .18s ease;
+  }
+
+  .ac-row:hover {
+    padding-left: 10px;
+  }
+
+  .ac-row:hover::before {
+    height: 38px;
+  }
+
+  .ac-year {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .03em;
+
+    color: var(--blue-deep);
+  }
+
+  .ac-name {
+    font-family: var(--serif);
+    font-size: 18.5px;
+    line-height: 1.35;
+
+    color: #26343b;
+  }
+
+  .ac-role {
+    position: relative;
+
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    color: var(--muted);
+  }
+
+  .ac-role::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    vertical-align: 1px;
+
+    background: var(--faint);
+  }
+
+  .ac-role.talk::before {
+    background: var(--blue);
+  }
+
+  .ac-role.org::before {
+    background: var(--green);
+  }
+
+
+  /* =========================================================
+     FELLOWSHIPS
+  ========================================================= */
+
+  .ac-fellows {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .ac-fellow {
+    position: relative;
+
+    min-height: 180px;
+
+    padding: 28px 28px 30px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255,255,255,1) 0%,
+        rgba(246,250,248,.92) 100%
+      );
+
+    border: 1px solid var(--line);
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    transition:
+      transform .2s ease,
+      border-color .2s ease,
+      box-shadow .2s ease;
+  }
+
+  .ac-fellow::after {
+    content: "";
+
+    position: absolute;
+    width: 110px;
+    height: 110px;
+
+    right: -46px;
+    top: -48px;
+
+    border-radius: 50%;
+
+    background: var(--green-50);
+
+    opacity: .9;
+  }
+
+  .ac-fellow:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--green-100);
+
+    box-shadow:
+      0 12px 32px rgba(25,70,55,.055);
+  }
+
+  .ac-fellow .yr {
+    position: relative;
+    z-index: 1;
+
+    display: inline-block;
+
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .07em;
+
+    color: var(--green-deep);
+
+    margin-bottom: 18px;
+  }
+
+  .ac-fellow h4 {
+    position: relative;
+    z-index: 1;
+
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 21.5px;
+    line-height: 1.3;
+
+    margin: 0 0 10px;
+
+    color: #16242c;
+  }
+
+  .ac-fellow p {
+    position: relative;
+    z-index: 1;
+
+    margin: 0;
+
+    font-size: 15.8px;
+    line-height: 1.65;
+
+    color: var(--muted);
+  }
+
+
+  /* =========================================================
+     SERVICE + OUTREACH
+  ========================================================= */
+
+  .ac-service {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .ac-card {
+    position: relative;
+
+    background: #fff;
+
+    border: 1px solid var(--line);
+    border-radius: 16px;
+
+    padding: 28px 28px 26px;
+
+    transition:
+      transform .2s ease,
+      border-color .2s ease,
+      box-shadow .2s ease;
+  }
+
+  .ac-card:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--blue-200);
+
+    box-shadow:
+      0 12px 30px rgba(24,90,122,.055);
+  }
+
+  .ac-card.wide {
+    grid-column: 1 / -1;
+  }
+
+  .ac-card h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 1.3;
+
+    margin: 0 0 18px;
+
+    color: #16242c;
+  }
+
+  .ac-card ul {
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  .ac-card li {
+    position: relative;
+
+    padding: 10px 0 10px 17px;
+
+    font-size: 15.8px;
+    line-height: 1.6;
+
+    color: #3f4d54;
+
+    border-bottom: 1px solid var(--bg-alt);
+  }
+
+  .ac-card li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .ac-card li:first-child {
+    padding-top: 0;
+  }
+
+  .ac-card li::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 19px;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--blue);
+  }
+
+  .ac-card li:first-child::before {
+    top: 9px;
+  }
+
+
+  /* =========================================================
+     OPTIONAL FEATURED STRIP
+  ========================================================= */
+
+  .ac-feature-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    margin: 0 0 64px;
+
+    border: 1px solid var(--line);
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    background: var(--bg-alt);
+  }
+
+  .ac-feature {
+    padding: 20px 22px;
+
+    border-right: 1px solid var(--line);
+  }
+
+  .ac-feature:last-child {
+    border-right: 0;
+  }
+
+  .ac-feature-value {
+    display: block;
+
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 600;
+
+    color: var(--ink);
+
+    margin-bottom: 3px;
+  }
+
+  .ac-feature-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+
+    color: var(--faint);
+  }
+
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+
+  @media (max-width: 760px) {
+
+    .ac-fellows,
+    .ac-service {
+      grid-template-columns: 1fr;
+    }
+
+    .ac-card.wide {
+      grid-column: 1;
+    }
+
+    .ac-feature-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .ac-feature {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ac-feature:last-child {
+      border-bottom: 0;
+    }
+
+  }
+
+
+  @media (max-width: 640px) {
+
+    .ac-section {
+      margin-bottom: 56px;
+    }
+
+    .ac-section-head {
+      display: block;
+    }
+
+    .ac-section-note {
+      margin-top: 6px;
+    }
+
+    .ac-row {
+      grid-template-columns: 48px 1fr;
+      grid-template-areas:
+        "year name"
+        "year role";
+
+      gap: 5px 16px;
+
+      padding: 19px 3px;
+    }
+
+    .ac-year {
+      grid-area: year;
+      align-self: start;
+
+      padding-top: 3px;
+    }
+
+    .ac-name {
+      grid-area: name;
+
+      font-size: 17.5px;
+    }
+
+    .ac-role {
+      grid-area: role;
+
+      justify-self: start;
+    }
+
+    .ac-row:hover {
+      padding-left: 6px;
+    }
+
+    .ac-fellow,
+    .ac-card {
+      padding: 24px;
+    }
+
+  }
+
 </style>
 
+
 <div class="bd bd-page">
+
   <div class="bd-wrap">
 
     <header class="bd-head">
+
       <h1>Activities</h1>
-      <p>Conferences, fellowships, and the community and service work alongside the research.</p>
+
+      <p>
+        Conferences, fellowships, and the outreach.
+      </p>
+
     </header>
+
 
     <div class="ac-wrap">
 
+
+      <!-- =====================================================
+           CONFERENCES
+      ====================================================== -->
+
       <section class="ac-section">
-        <div class="bd-label"><span class="dot"></span>Conferences &amp; Talks</div>
+
+        <div class="ac-section-head">
+
+          <div class="ac-section-title">
+            <span class="dot"></span>
+            Conferences &amp; Talks
+          </div>
+
+          
+
+        </div>
+
+
         <div class="ac-conf">
+
           {% for c in site.data.activities.conferences %}
+
             {% assign role_dc = c.role | downcase %}
-            {% if role_dc contains 'talk' %}{% assign rc = 'talk' %}
-            {% elsif role_dc contains 'organis' or role_dc contains 'organiz' %}{% assign rc = 'org' %}
-            {% else %}{% assign rc = 'poster' %}{% endif %}
+
+            {% if role_dc contains 'talk' %}
+              {% assign rc = 'talk' %}
+            {% elsif role_dc contains 'organis' or role_dc contains 'organiz' %}
+              {% assign rc = 'org' %}
+            {% else %}
+              {% assign rc = 'poster' %}
+            {% endif %}
+
             <div class="ac-row">
-              <span class="ac-year">{{ c.year }}</span>
-              <span class="ac-name">{{ c.name }}</span>
-              <span class="ac-role {{ rc }}">{{ c.role }}</span>
+
+              <span class="ac-year">
+                {{ c.year }}
+              </span>
+
+              <span class="ac-name">
+                {{ c.name }}
+              </span>
+
+              <span class="ac-role {{ rc }}">
+                {{ c.role }}
+              </span>
+
             </div>
+
           {% endfor %}
+
         </div>
+
       </section>
 
+
+      <!-- =====================================================
+           FELLOWSHIPS
+      ====================================================== -->
+
       <section class="ac-section">
-        <div class="bd-label green"><span class="dot"></span>Awards &amp; Fellowships</div>
+
+        <div class="ac-section-head">
+
+          <div class="ac-section-title green">
+            <span class="dot"></span>
+            Awards &amp; Fellowships
+          </div>
+
+          
+
+        </div>
+
+
         <div class="ac-fellows">
+
           {% for f in site.data.activities.fellowships %}
-            <div class="ac-fellow">
-              <span class="yr">{{ f.year }}</span>
-              <h4>{{ f.name }}</h4>
-              {% if f.note %}<p>{{ f.note }}</p>{% endif %}
-            </div>
+
+            <article class="ac-fellow">
+
+              <span class="yr">
+                {{ f.year }}
+              </span>
+
+              <h4>
+                {{ f.name }}
+              </h4>
+
+              {% if f.note %}
+                <p>{{ f.note }}</p>
+              {% endif %}
+
+            </article>
+
           {% endfor %}
+
         </div>
+
       </section>
 
+
+      <!-- =====================================================
+           SERVICE
+      ====================================================== -->
+
       <section class="ac-section">
-        <div class="bd-label"><span class="dot"></span>Service &amp; Outreach</div>
-        <div class="ac-service">
-          {% for s in site.data.activities.service %}
-            <div class="ac-card{% if s.items.size > 3 %} wide{% endif %}">
-              <h4>{{ s.group }}</h4>
-              <ul>{% for it in s.items %}<li>{{ it }}</li>{% endfor %}</ul>
-            </div>
-          {% endfor %}
+
+        <div class="ac-section-head">
+
+          <div class="ac-section-title">
+            <span class="dot"></span>
+            Service &amp; Outreach
+          </div>
+
+          
+
         </div>
+
+
+        <div class="ac-service">
+
+          {% for s in site.data.activities.service %}
+
+            <article class="ac-card{% if s.items.size > 3 %} wide{% endif %}">
+
+              <h4>
+                {{ s.group }}
+              </h4>
+
+              <ul>
+
+                {% for it in s.items %}
+                  <li>{{ it }}</li>
+                {% endfor %}
+
+              </ul>
+
+            </article>
+
+          {% endfor %}
+
+        </div>
+
       </section>
 
     </div>
+
   </div>
+
 </div>

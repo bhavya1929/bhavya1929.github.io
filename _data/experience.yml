@@ -17,7 +17,7 @@
 # =============================================================================
 
 # Small intro line under the "Experience" title.
-tagline: "My Journey Through Computational Biology: From Genomics to Modern AI"
+tagline: "My Journey Through Computational Biology: From Data Analysis to Modern AI"
 
 timeline:
   - kind: work            # "work" or "education" (controls the pill + dot colour)
@@ -41,7 +41,7 @@ timeline:
     org_url: "#"
     note: "Marie Skłodowska-Curie Actions Fellowship — competitive EU-wide award"
     desc: >
-      Developed computational and experimental approaches 
+      Developed computational approaches 
       to identify and characterise regulatory non-coding RNA targets using functional genomics, CRISPR perturbation, and multi-omics data.
     tags: [lncRNA Discovery, Regulatory Genomics, Multi-omics, CRISPR Screens]
     skills: [lncRNA-Target-Discovery, Regulatory-Genomics, Multi-omics-Integration, Genome-Analysis, Genetics, Bioconductor, Functional-Genomics, Python, R, Bash, Pandas, NumPy, Jupyter, RStudio, Git/GitHub, Data-Analysis, Data-Visualization, Statistics, Biostatistics, Machine-Learning, Linear-Models, Mixed-Effects, scRNA-seq, Perturb-seq, CRISPR-Screens, Seurat, Scanpy, DESeq2, BEDtools, Reproducible-Pipelines, Cell-Ranger]

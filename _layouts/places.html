@@ -1,0 +1,1126 @@
+---
+layout: base
+---
+
+{% include bd-theme.html %}
+
+{% assign data = site.data.places %}
+
+{% assign cities_count = data.cities.size %}
+{% assign countries = data.cities | map: 'country' | uniq %}
+{% assign countries_count = countries.size %}
+{% assign places_count = 0 %}
+
+{% for city in data.cities %}
+  {% assign places_count = places_count | plus: city.cafes.size | plus: city.restaurants.size %}
+{% endfor %}
+
+<style>
+
+  /* =========================================================
+     PAGE INTRO
+  ========================================================= */
+
+  .pl-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    flex-wrap: wrap;
+
+    font-family: var(--mono);
+    font-size: 13.5px;
+    letter-spacing: .025em;
+    color: var(--faint);
+
+    margin: 0 0 24px;
+  }
+
+  .pl-stats .sep {
+    opacity: .45;
+  }
+
+  .pl-intro {
+    text-align: center;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.72;
+
+    max-width: 680px;
+    margin: 0 auto 58px;
+  }
+
+
+  /* =========================================================
+     MAP
+  ========================================================= */
+
+  .pl-map-section {
+    max-width: 940px;
+    margin: 0 auto 64px;
+  }
+
+  .pl-map-heading {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .pl-map-kicker {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: .13em;
+    color: var(--faint);
+  }
+
+  .pl-map-wrap {
+    position: relative;
+
+    padding: 22px 26px 14px;
+
+    background:
+      radial-gradient(circle at 50% 35%,
+        rgba(24,90,122,.035),
+        transparent 58%),
+      var(--bg-alt);
+
+    border: 1px solid var(--line);
+    border-radius: 22px;
+
+    overflow: hidden;
+  }
+
+  .pl-map {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .pl-landmass {
+    fill: #fff;
+    stroke: var(--line);
+    stroke-width: .65;
+  }
+
+  .pl-dot-group {
+    cursor: pointer;
+    outline: none;
+  }
+
+  .pl-dot-ring {
+    fill: none;
+    stroke: var(--blue-deep);
+    stroke-width: 1.5;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      opacity .2s ease,
+      transform .2s ease;
+  }
+
+  .pl-dot {
+    fill: var(--blue-deep);
+    opacity: .68;
+
+    transition:
+      opacity .18s ease,
+      transform .18s ease;
+
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .pl-dot-group:hover .pl-dot,
+  .pl-dot-group:focus .pl-dot,
+  .pl-dot-group.active .pl-dot {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+
+  .pl-dot-group:hover .pl-dot-ring,
+  .pl-dot-group:focus .pl-dot-ring,
+  .pl-dot-group.active .pl-dot-ring {
+    opacity: .22;
+    transform: scale(1.5);
+  }
+
+
+  /* Map tooltip */
+
+  .pl-tooltip {
+    position: absolute;
+
+    min-width: 150px;
+
+    padding: 10px 13px;
+
+    background: rgba(255,255,255,.97);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    box-shadow:
+      0 10px 30px rgba(20,45,60,.10);
+
+    pointer-events: none;
+
+    opacity: 0;
+    transform: translate(-50%, -8px);
+
+    transition:
+      opacity .15s ease,
+      transform .15s ease;
+
+    z-index: 10;
+  }
+
+  .pl-tooltip.visible {
+    opacity: 1;
+    transform: translate(-50%, -14px);
+  }
+
+  .pl-tooltip-city {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .pl-tooltip-meta {
+    margin-top: 2px;
+
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--faint);
+  }
+
+
+  /* =========================================================
+     CITY SECTION
+  ========================================================= */
+
+  .pl-explore-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-bottom: 22px;
+  }
+
+  .pl-explore-title {
+    margin: 0;
+
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .pl-explore-note {
+    margin: 0;
+
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--faint);
+  }
+
+
+  /* =========================================================
+     CITY CARDS
+  ========================================================= */
+
+  .pl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .pl-city {
+    position: relative;
+
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+
+    padding: 24px 25px;
+
+    grid-column: span 1;
+
+    transition:
+      border-color .2s ease,
+      box-shadow .2s ease,
+      transform .2s ease;
+  }
+
+  .pl-city:not(.open):hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(24,90,122,.22);
+
+    box-shadow:
+      0 10px 28px rgba(24,90,122,.055);
+  }
+
+  .pl-city.open,
+  .pl-city.pl-linked {
+    border-color: var(--blue-200);
+
+    box-shadow:
+      0 12px 34px rgba(24,90,122,.075);
+  }
+
+  .pl-city.open {
+    grid-column: 1 / -1;
+    transform: none;
+  }
+
+
+  /* =========================================================
+     CARD HEADER
+  ========================================================= */
+
+  .pl-city-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .pl-city h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 21px;
+
+    margin: 0 0 7px;
+
+    color: #16242c;
+  }
+
+  .pl-country {
+    font-family: var(--sans);
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .pl-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--faint);
+
+    margin-bottom: 5px;
+  }
+
+  .pl-summary {
+    font-size: 13.8px;
+    color: var(--muted);
+  }
+
+
+  /* =========================================================
+     EXPLORE BUTTON
+  ========================================================= */
+
+  .pl-toggle {
+    flex: none;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    background: transparent;
+    border: 0;
+
+    padding: 2px 0;
+
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .025em;
+
+    color: var(--blue-deep);
+
+    cursor: pointer;
+
+    transition: color .15s ease;
+  }
+
+  .pl-toggle:hover {
+    color: #0f4560;
+  }
+
+  .pl-toggle .arrow {
+    display: inline-block;
+    transition: transform .22s ease;
+  }
+
+  .pl-city.open .pl-toggle .arrow {
+    transform: rotate(180deg);
+  }
+
+
+  /* =========================================================
+     EXPANDED CONTENT
+  ========================================================= */
+
+  .pl-body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    transition: grid-template-rows .3s ease;
+  }
+
+  .pl-city.open .pl-body-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .pl-body-overflow {
+    overflow: hidden;
+  }
+
+  .pl-body {
+    margin-top: 0;
+
+    opacity: 0;
+
+    transition:
+      opacity .2s ease,
+      margin-top .3s ease;
+  }
+
+  .pl-city.open .pl-body {
+    opacity: 1;
+    margin-top: 24px;
+
+    padding-top: 24px;
+
+    border-top: 1px solid var(--line);
+  }
+
+
+  /* =========================================================
+     CATEGORIES + PLACES
+  ========================================================= */
+
+  .pl-body-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px;
+  }
+
+  .pl-cat {
+    min-width: 0;
+  }
+
+  .pl-cat-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    color: var(--faint);
+
+    margin-bottom: 14px;
+  }
+
+  .pl-cat-label .dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+    background: var(--blue);
+
+    flex: none;
+  }
+
+  .pl-cat-label .dot.green {
+    background: var(--green);
+  }
+
+  .pl-cat ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pl-cat li {
+    padding: 11px 0;
+
+    border-bottom: 1px solid var(--bg-alt);
+  }
+
+  .pl-cat li:last-child {
+    border-bottom: 0;
+  }
+
+  .pl-place-name {
+    display: block;
+
+    font-family: var(--serif);
+    font-size: 16.5px;
+    font-weight: 600;
+
+    color: var(--ink);
+
+    margin-bottom: 2px;
+  }
+
+  .pl-place-note {
+    display: block;
+
+    font-size: 14.5px;
+    line-height: 1.55;
+
+    color: var(--muted);
+  }
+
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+
+  @media (max-width: 900px) {
+
+    .pl-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .pl-body-columns {
+      gap: 32px;
+    }
+
+  }
+
+  @media (max-width: 640px) {
+
+    .pl-map-section {
+      margin-bottom: 46px;
+    }
+
+    .pl-map-wrap {
+      padding: 12px 8px 8px;
+      border-radius: 16px;
+    }
+
+    .pl-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pl-city.open {
+      grid-column: 1;
+    }
+
+    .pl-city-top {
+      gap: 14px;
+    }
+
+    .pl-body-columns {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .pl-explore-head {
+      display: block;
+    }
+
+    .pl-explore-note {
+      margin-top: 5px;
+    }
+
+  }
+
+</style>
+
+
+<div class="bd bd-page">
+
+  <div class="bd-wrap">
+
+    <header class="bd-head">
+      <h1>Beyond the Lab</h1>
+      <p style="font-style:italic;">{{ data.tagline }}</p>
+    </header>
+
+
+    <div class="pl-stats">
+      <span>{{ cities_count }} cities</span>
+      <span class="sep">&middot;</span>
+      <span>{{ places_count }} places</span>
+      <span class="sep">&middot;</span>
+      <span>{{ countries_count }} countries</span>
+    </div>
+
+
+    {% if data.intro %}
+      <p class="pl-intro">{{ data.intro }}</p>
+    {% endif %}
+
+
+    <!-- =====================================================
+         MAP
+    ====================================================== -->
+
+    <section class="pl-map-section">
+
+      <div class="pl-map-heading">
+        <span class="pl-map-kicker">Places worth travelling back for</span>
+      </div>
+
+      <div class="pl-map-wrap" id="plMapWrap">
+
+        <svg
+          class="pl-map"
+          viewBox="0 0 960 500"
+          role="img"
+          aria-label="Map showing cities with food recommendations"
+        >
+
+          <path
+            class="pl-landmass"
+            d="{% include world-map-path.html %}">
+          </path>
+
+          {% for city in data.cities %}
+
+            {% assign total = city.cafes.size | plus: city.restaurants.size %}
+
+            {% assign xsum = city.lon | plus: 180 %}
+            {% assign xfrac = xsum | divided_by: 360.0 %}
+            {% assign x = xfrac | times: 960 | round: 1 %}
+
+            {% assign ydiff = 90 | minus: city.lat %}
+            {% assign yfrac = ydiff | divided_by: 180.0 %}
+            {% assign y = yfrac | times: 500 | round: 1 %}
+
+            {% if total >= 10 %}
+              {% assign r = 8 %}
+            {% elsif total >= 6 %}
+              {% assign r = 6.8 %}
+            {% elsif total >= 3 %}
+              {% assign r = 5.5 %}
+            {% else %}
+              {% assign r = 4.3 %}
+            {% endif %}
+
+            <g
+              class="pl-dot-group"
+              data-index="{{ forloop.index0 }}"
+              data-city="{{ city.name }}"
+              data-country="{{ city.country }}"
+              data-total="{{ total }}"
+              tabindex="0"
+              role="button"
+              aria-label="{{ city.name }}, {{ city.country }}, {{ total }} places"
+            >
+
+              <circle
+                class="pl-dot-ring"
+                cx="{{ x }}"
+                cy="{{ y }}"
+                r="{{ r | plus: 3 }}">
+              </circle>
+
+              <circle
+                class="pl-dot"
+                cx="{{ x }}"
+                cy="{{ y }}"
+                r="{{ r }}">
+              </circle>
+
+            </g>
+
+          {% endfor %}
+
+        </svg>
+
+        <div class="pl-tooltip" id="plTooltip">
+          <div class="pl-tooltip-city"></div>
+          <div class="pl-tooltip-meta"></div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CITIES
+    ====================================================== -->
+
+    <div class="pl-explore-head">
+
+      <h2 class="pl-explore-title">
+        Explore by city
+      </h2>
+
+      <p class="pl-explore-note">
+        Click a city to see the recommendations
+      </p>
+
+    </div>
+
+
+    <div class="pl-grid" id="plGrid">
+
+      {% for city in data.cities %}
+
+        {% assign total = city.cafes.size | plus: city.restaurants.size %}
+
+        <article class="pl-city">
+
+          <div class="pl-city-top">
+
+            <div>
+
+              <h3>
+                {{ city.name }}
+                <span class="pl-country">, {{ city.country }}</span>
+              </h3>
+
+              <div class="pl-meta">
+                {{ total }} place{% if total != 1 %}s{% endif %}
+              </div>
+
+              <div class="pl-summary">
+
+                {% if city.cafes.size > 0 %}
+                  {{ city.cafes.size }}
+                  café{% if city.cafes.size != 1 %}s{% endif %}
+                  &amp; bakeries
+                {% endif %}
+
+                {% if city.cafes.size > 0 and city.restaurants.size > 0 %}
+                  &middot;
+                {% endif %}
+
+                {% if city.restaurants.size > 0 %}
+                  {{ city.restaurants.size }}
+                  restaurant{% if city.restaurants.size != 1 %}s{% endif %}
+                {% endif %}
+
+              </div>
+
+            </div>
+
+
+            <button
+              class="pl-toggle"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="label">Explore</span>
+              <span class="arrow">&darr;</span>
+            </button>
+
+          </div>
+
+
+          <div class="pl-body-wrap">
+
+            <div class="pl-body-overflow">
+
+              <div class="pl-body">
+
+                <div class="pl-body-columns">
+
+                  {% if city.cafes.size > 0 %}
+
+                    <div class="pl-cat">
+
+                      <div class="pl-cat-label">
+                        <span class="dot"></span>
+                        Cafés &amp; Bakeries
+                      </div>
+
+                      <ul>
+
+                        {% for p in city.cafes %}
+                          <li>
+                            <span class="pl-place-name">{{ p.name }}</span>
+                            <span class="pl-place-note">{{ p.note }}</span>
+                          </li>
+                        {% endfor %}
+
+                      </ul>
+
+                    </div>
+
+                  {% endif %}
+
+
+                  {% if city.restaurants.size > 0 %}
+
+                    <div class="pl-cat">
+
+                      <div class="pl-cat-label">
+                        <span class="dot green"></span>
+                        Restaurants
+                      </div>
+
+                      <ul>
+
+                        {% for p in city.restaurants %}
+                          <li>
+                            <span class="pl-place-name">{{ p.name }}</span>
+                            <span class="pl-place-note">{{ p.note }}</span>
+                          </li>
+                        {% endfor %}
+
+                      </ul>
+
+                    </div>
+
+                  {% endif %}
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+(function () {
+
+  var grid = document.getElementById('plGrid');
+  var mapWrap = document.getElementById('plMapWrap');
+  var svg = document.querySelector('.pl-map');
+  var tooltip = document.getElementById('plTooltip');
+
+  if (!grid) return;
+
+  var cards = [].slice.call(
+    grid.querySelectorAll('.pl-city')
+  );
+
+  var dotGroups = svg
+    ? [].slice.call(svg.querySelectorAll('.pl-dot-group'))
+    : [];
+
+
+  /* ---------------------------------------------------------
+     Card state
+  --------------------------------------------------------- */
+
+  function closeAll(exceptCard) {
+
+    cards.forEach(function (card, idx) {
+
+      if (card === exceptCard) return;
+
+      card.classList.remove('open');
+
+      var btn = card.querySelector('.pl-toggle');
+
+      if (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+        btn.querySelector('.label').textContent = 'Explore';
+      }
+
+      if (dotGroups[idx]) {
+        dotGroups[idx].classList.remove('active');
+      }
+
+    });
+
+  }
+
+
+  function setCardOpen(card, open) {
+
+    var idx = cards.indexOf(card);
+    var btn = card.querySelector('.pl-toggle');
+
+    if (open) {
+
+      closeAll(card);
+
+      card.classList.add('open');
+
+      btn.setAttribute('aria-expanded', 'true');
+      btn.querySelector('.label').textContent = 'Close';
+
+      if (dotGroups[idx]) {
+        dotGroups[idx].classList.add('active');
+      }
+
+    } else {
+
+      card.classList.remove('open');
+
+      btn.setAttribute('aria-expanded', 'false');
+      btn.querySelector('.label').textContent = 'Explore';
+
+      if (dotGroups[idx]) {
+        dotGroups[idx].classList.remove('active');
+      }
+
+    }
+
+  }
+
+
+  function openCard(card) {
+
+    setCardOpen(card, true);
+
+    setTimeout(function () {
+
+      card.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+
+    }, 100);
+
+  }
+
+
+  /* ---------------------------------------------------------
+     City cards
+  --------------------------------------------------------- */
+
+  cards.forEach(function (card, idx) {
+
+    var btn = card.querySelector('.pl-toggle');
+
+    btn.addEventListener('click', function () {
+
+      var currentlyOpen =
+        card.classList.contains('open');
+
+      setCardOpen(
+        card,
+        !currentlyOpen
+      );
+
+    });
+
+
+    var dot = dotGroups[idx];
+
+    if (dot) {
+
+      card.addEventListener(
+        'mouseenter',
+        function () {
+          dot.classList.add('active');
+        }
+      );
+
+      card.addEventListener(
+        'mouseleave',
+        function () {
+
+          if (!card.classList.contains('open')) {
+            dot.classList.remove('active');
+          }
+
+        }
+      );
+
+    }
+
+  });
+
+
+  /* ---------------------------------------------------------
+     Tooltip
+  --------------------------------------------------------- */
+
+  function showTooltip(group) {
+
+    if (!tooltip || !mapWrap) return;
+
+    var city =
+      group.getAttribute('data-city');
+
+    var country =
+      group.getAttribute('data-country');
+
+    var total =
+      parseInt(group.getAttribute('data-total'), 10);
+
+    tooltip.querySelector('.pl-tooltip-city')
+      .textContent = city;
+
+    tooltip.querySelector('.pl-tooltip-meta')
+      .textContent =
+        country +
+        ' · ' +
+        total +
+        ' place' +
+        (total === 1 ? '' : 's');
+
+
+    var dot =
+      group.querySelector('.pl-dot');
+
+    var svgRect =
+      svg.getBoundingClientRect();
+
+    var mapRect =
+      mapWrap.getBoundingClientRect();
+
+    var cx =
+      parseFloat(dot.getAttribute('cx'));
+
+    var cy =
+      parseFloat(dot.getAttribute('cy'));
+
+    var viewBox =
+      svg.viewBox.baseVal;
+
+    var scaleX =
+      svgRect.width / viewBox.width;
+
+    var scaleY =
+      svgRect.height / viewBox.height;
+
+    var x =
+      (svgRect.left - mapRect.left) +
+      (cx * scaleX);
+
+    var y =
+      (svgRect.top - mapRect.top) +
+      (cy * scaleY);
+
+    tooltip.style.left =
+      x + 'px';
+
+    tooltip.style.top =
+      y + 'px';
+
+    tooltip.classList.add('visible');
+
+  }
+
+
+  function hideTooltip() {
+
+    if (tooltip) {
+      tooltip.classList.remove('visible');
+    }
+
+  }
+
+
+  /* ---------------------------------------------------------
+     Map interactions
+  --------------------------------------------------------- */
+
+  dotGroups.forEach(function (group) {
+
+    var idx =
+      parseInt(
+        group.getAttribute('data-index'),
+        10
+      );
+
+    var card =
+      cards[idx];
+
+    if (!card) return;
+
+
+    group.addEventListener(
+      'mouseenter',
+      function () {
+
+        card.classList.add('pl-linked');
+
+        showTooltip(group);
+
+      }
+    );
+
+
+    group.addEventListener(
+      'mouseleave',
+      function () {
+
+        card.classList.remove('pl-linked');
+
+        hideTooltip();
+
+      }
+    );
+
+
+    group.addEventListener(
+      'focus',
+      function () {
+
+        card.classList.add('pl-linked');
+
+        showTooltip(group);
+
+      }
+    );
+
+
+    group.addEventListener(
+      'blur',
+      function () {
+
+        card.classList.remove('pl-linked');
+
+        hideTooltip();
+
+      }
+    );
+
+
+    group.addEventListener(
+      'click',
+      function () {
+
+        hideTooltip();
+        openCard(card);
+
+      }
+    );
+
+
+    group.addEventListener(
+      'keydown',
+      function (e) {
+
+        if (
+          e.key === 'Enter' ||
+          e.key === ' '
+        ) {
+
+          e.preventDefault();
+
+          hideTooltip();
+          openCard(card);
+
+        }
+
+      }
+    );
+
+  });
+
+})();
+
+</script>

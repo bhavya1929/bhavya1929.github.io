@@ -32,10 +32,8 @@ groups:
 
       - title: Immunoproteasome
         desc: >
-          Random-forest models evaluating pan-cancer immunoproteasome activity
-          as a predictor of immunotherapy response, benchmarked against
-          established markers.
-        tags: [TCAG, Immunotherapy, Cancer Genomics, Biomarkers]
+          Exploring prognostic association of immunoproteasome expression in solid tumours.
+        tags: [TCGA, Immunotherapy, Cancer Genomics, Biomarkers]
         url: "https://github.com/bhavya1929/immunoproteasome"
 
   - name: Consortia & Collaborations
@@ -50,5 +48,5 @@ groups:
       - title: NIH — Small-Cell Lung Cancer scRNA-seq
         desc: >
           Pilot analysis of single-cell SCLC data to investigate how the local liver microenvironment influences tumour cell evolution.
-        tags: [scRNA-seq, Tumour Evolution, sc-RNA, SCLC]
+        tags: [scRNA-seq, Tumour Evolution, SCLC]
         url: "https://www.biorxiv.org/content/10.64898/2026.06.30.735617v1.abstract"

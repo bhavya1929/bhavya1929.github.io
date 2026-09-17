@@ -1,13 +1,83 @@
+```html
 ---
-layout: default
-title: 404 - Page not found
+layout: base
+title: 404
 permalink: /404.html
 ---
 
-<div class="text-center">
-  <h1>Whoops, this page doesn't exist.</h1>
-  <h1>Move along. (404 error)</h1>
-  <br/>
+{% include bd-theme.html %}
 
-  <img src="{{ site.baseurl }}/img/404-southpark.jpg" />
+<style>
+  .error-page{
+    min-height:68vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .error-inner{
+    max-width:620px;
+    margin:0 auto;
+    padding:70px 24px;
+  }
+
+  .error-code{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--faint);
+    margin-bottom:18px;
+  }
+
+  .error-page h1{
+    font-family:var(--serif);
+    font-size:42px;
+    line-height:1.15;
+    font-weight:600;
+    color:var(--ink);
+    margin:0 0 16px;
+  }
+
+  .error-page p{
+    font-size:17px;
+    line-height:1.7;
+    color:var(--muted);
+    margin:0 auto 28px;
+    max-width:520px;
+  }
+
+  .error-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width:640px){
+    .error-page h1{font-size:34px;}
+  }
+</style>
+
+<div class="bd bd-page error-page">
+  <div class="error-inner">
+
+    <div class="error-code">404 · Page not found</div>
+
+    <h1>This page seems to have wandered off.</h1>
+
+    <p>
+      The link may be outdated, or the page may have moved.
+      You can head back home or continue exploring the site.
+    </p>
+
+    <div class="error-actions">
+      <a class="bd-btn primary" href="{{ site.baseurl }}/">Back home</a>
+      <a class="bd-btn" href="{{ site.baseurl }}/experience/">Experience</a>
+      <a class="bd-btn" href="{{ site.baseurl }}/publications/">Publications</a>
+    </div>
+
+  </div>
 </div>
+```
