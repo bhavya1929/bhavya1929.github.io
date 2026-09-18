@@ -43,6 +43,8 @@ layout: base
     text-align: left;
     margin-bottom: 1px;
   }
+  
+
 
   .pl-design {
     position: absolute;
@@ -62,7 +64,7 @@ layout: base
   }
 .pl-hero-copy .bd-head p {
   color: #526b79;
-}
+  }
 
   .pl-stats {
     display: flex;
@@ -77,15 +79,15 @@ layout: base
     color:#66899f;
     margin: 0 0 22px;
   }
-
   .pl-map-hint {
   margin: 8px 0 0;
   text-align: center;
   font-family: var(--mono);
   font-size: 11.5px;
+  font-weight: 600;
   color: #7f98a7;
   letter-spacing: .02em;
-}
+  }
 
   .pl-stats .sep { opacity: .45; }
 
@@ -329,6 +331,7 @@ layout: base
     border: 0;
     background: transparent;
     cursor: pointer;
+    transform-origin: center;
   }
 
   .pl-tile-button img,
@@ -354,6 +357,80 @@ layout: base
   .pl-city.pl-linked .pl-tile-button::after {
     border-color: rgba(24,90,122,.42);
     box-shadow: inset 0 0 0 2px rgba(255,255,255,.42);
+  }
+
+  /* ---------------------------------------------------------
+     "Tap for places" badge — sits on every city tile so the
+     interaction pattern is visible at rest, on phone and desktop,
+     without needing a hover state.
+  --------------------------------------------------------- */
+
+  .pl-tile-badge {
+    position: absolute;
+    right: 9px;
+    bottom: 9px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.86);
+    box-shadow: 0 2px 6px rgba(20,45,60,.20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #155a8a;
+    z-index: 2;
+    pointer-events: none;
+    transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+
+  .pl-tile-badge svg {
+    width: 13px;
+    height: 13px;
+    display: block;
+  }
+
+  .pl-city:not(.open):hover .pl-tile-badge,
+  .pl-city:focus-within .pl-tile-badge {
+    background: #ffffff;
+    transform: scale(1.12);
+    box-shadow: 0 3px 9px rgba(20,45,60,.28);
+  }
+
+  /* ---------------------------------------------------------
+     First-visit attention cue on one tile (set via JS).
+     A quick side-to-side "shimmy" burst, then a rest — repeats
+     on an interval rather than moving continuously. Stops
+     permanently the moment any city tile is opened.
+  --------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: no-preference) {
+
+    @keyframes pl-tile-shimmy {
+      0%, 100% { transform: translateX(0) rotate(0deg); }
+      2%       { transform: translateX(-4px) rotate(-2deg); }
+      4%       { transform: translateX(4px)  rotate(2deg); }
+      6%       { transform: translateX(-4px) rotate(-2deg); }
+      8%       { transform: translateX(4px)  rotate(2deg); }
+      10%      { transform: translateX(-2px) rotate(-1deg); }
+      12%      { transform: translateX(0) rotate(0deg); }
+      /* rests here until the animation loops back to 0% */
+    }
+
+    .pl-city.pl-pulse {
+      animation: pl-tile-shimmy 3.5s cubic-bezier(.37,0,.63,1) infinite;
+      transform-origin: 50% 100%;
+    }
+
+    @keyframes pl-badge-pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(21,90,138,.45); }
+      12%  { box-shadow: 0 0 0 10px rgba(21,90,138,0); }
+      100% { box-shadow: 0 0 0 0 rgba(21,90,138,0); }
+    }
+
+    .pl-city.pl-pulse .pl-tile-badge {
+      animation: pl-badge-pulse-ring 4.5s cubic-bezier(.37,0,.63,1) infinite;
+    }
+
   }
 
   .pl-city.open {
@@ -637,7 +714,12 @@ layout: base
 
       <div class="pl-hero-copy">
 
-        
+        <img
+          class="pl-design"
+          src="{{ '/img/design.png' | relative_url }}"
+          alt=""
+          aria-hidden="true"
+        >
 
         <header class="bd-head">
           <h1>Beyond the Lab</h1>
@@ -755,7 +837,6 @@ layout: base
         <p class="pl-map-hint">Click a city dot to jump to its recommendations.</p>
 
       </section>
-      
 
     </section>
 
@@ -855,6 +936,13 @@ layout: base
               {% endif %}
               loading="lazy"
             >
+
+            <span class="pl-tile-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 4l8 8-8 8"></path>
+              </svg>
+            </span>
+
           </button>
 
           <div class="pl-panel">
@@ -946,7 +1034,6 @@ layout: base
               'tile3.png',
               'tile1.png',
               'tile10.png',
-              'tile2.png',
               'tile4.png',
               'tile13.png',
               'tile14.png',
@@ -954,8 +1041,8 @@ layout: base
               'tile6.png',
               'tile7.png',
               'tile8.png',
-              'tile12.png'
-              
+              'tile12.png',
+              'tile2.png'
             %}
           {% endcapture %}
 
@@ -1049,6 +1136,34 @@ layout: base
   var dotGroups = svg
     ? [].slice.call(svg.querySelectorAll('.pl-dot-group'))
     : [];
+
+
+  /* ---------------------------------------------------------
+     First-visit bounce
+     Marks whichever city is first in the data (Dublin, currently)
+     so it bounces gently until someone opens any city tile.
+  --------------------------------------------------------- */
+
+  (function initPulse() {
+
+    var firstGroup = dotGroups[0];
+    if (!firstGroup) return;
+
+    var idx = parseInt(firstGroup.getAttribute('data-index'), 10);
+
+    cards.forEach(function (card) {
+      if (parseInt(card.getAttribute('data-city-index'), 10) === idx) {
+        card.classList.add('pl-pulse');
+      }
+    });
+
+  })();
+
+  function stopPulse() {
+    cards.forEach(function (card) {
+      card.classList.remove('pl-pulse');
+    });
+  }
 
 
   /* ---------------------------------------------------------
@@ -1175,6 +1290,7 @@ layout: base
 
   function openCard(card) {
 
+    stopPulse();
     setCardOpen(card, true);
 
     setTimeout(function () {
